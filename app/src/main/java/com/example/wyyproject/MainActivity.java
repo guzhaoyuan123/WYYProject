@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 tab.setCustomView(null);
             }
 
+
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
