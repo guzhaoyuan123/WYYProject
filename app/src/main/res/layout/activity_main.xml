@@ -47,6 +47,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:name="android.support.v4.app.ListFragment"
         android:id="@+id/fl_monetary_replace"
         android:layout_weight="1"
         android:layout_width="match_parent"

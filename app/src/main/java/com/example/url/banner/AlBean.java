@@ -12,18 +12,18 @@ public class AlBean {
          * pic : 109951164172892380
          */
 
-        private int id;
+        private long id;
         private String name;
         private String picUrl;
         private String pic_str;
         private long pic;
         private List<?> tns;
 
-        public int getId() {
+        public long getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(long id) {
             this.id = id;
         }
 

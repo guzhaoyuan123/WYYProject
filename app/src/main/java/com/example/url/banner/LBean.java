@@ -1,6 +1,6 @@
 package com.example.url.banner;
 
-class LBean {
+public class LBean {
     /**
      * br : 128000
      * fid : 0
@@ -8,40 +8,40 @@ class LBean {
      * vd : -33044
      */
 
-    private int br;
-    private int fid;
-    private int size;
-    private int vd;
+    private long br;
+    private long fid;
+    private long size;
+    private long vd;
 
-    public int getBr() {
+    public long getBr() {
         return br;
     }
 
-    public void setBr(int br) {
+    public void setBr(long br) {
         this.br = br;
     }
 
-    public int getFid() {
+    public long getFid() {
         return fid;
     }
 
-    public void setFid(int fid) {
+    public void setFid(long fid) {
         this.fid = fid;
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(long size) {
         this.size = size;
     }
 
-    public int getVd() {
+    public long getVd() {
         return vd;
     }
 
-    public void setVd(int vd) {
+    public void setVd(long vd) {
         this.vd = vd;
     }
 }

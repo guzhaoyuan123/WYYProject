@@ -40,9 +40,9 @@ public class BannersBean {
      */
 
     private String pic;
-    private int targetId;
+    private long targetId;
     private Object adid;
-    private int targetType;
+    private long targetType;
     private String titleColor;
     private String typeTitle;
     private Object url;
@@ -81,11 +81,11 @@ public class BannersBean {
         this.pic = pic;
     }
 
-    public int getTargetId() {
+    public long getTargetId() {
         return targetId;
     }
 
-    public void setTargetId(int targetId) {
+    public void setTargetId(long targetId) {
         this.targetId = targetId;
     }
 
@@ -97,11 +97,11 @@ public class BannersBean {
         this.adid = adid;
     }
 
-    public int getTargetType() {
+    public long getTargetType() {
         return targetType;
     }
 
-    public void setTargetType(int targetType) {
+    public void setTargetType(long targetType) {
         this.targetType = targetType;
     }
 

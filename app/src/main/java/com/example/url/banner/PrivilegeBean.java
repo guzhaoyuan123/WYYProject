@@ -1,6 +1,6 @@
 package com.example.url.banner;
 
-class PrivilegeBean {
+public class PrivilegeBean {
     /**
      * id : 1374056689
      * fee : 0
@@ -19,47 +19,47 @@ class PrivilegeBean {
      * preSell : false
      */
 
-    private int id;
-    private int fee;
-    private int payed;
-    private int st;
-    private int pl;
-    private int dl;
-    private int sp;
-    private int cp;
-    private int subp;
+    private long id;
+    private long fee;
+    private long payed;
+    private long st;
+    private long pl;
+    private long dl;
+    private long sp;
+    private long cp;
+    private long subp;
     private boolean cs;
-    private int maxbr;
-    private int fl;
+    private long maxbr;
+    private long fl;
     private boolean toast;
-    private int flag;
+    private long flag;
     private boolean preSell;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getFee() {
+    public long getFee() {
         return fee;
     }
 
-    public void setFee(int fee) {
+    public void setFee(long fee) {
         this.fee = fee;
     }
 
-    public int getPayed() {
+    public long getPayed() {
         return payed;
     }
 
-    public void setPayed(int payed) {
+    public void setPayed(long payed) {
         this.payed = payed;
     }
 
-    public int getSt() {
+    public long getSt() {
         return st;
     }
 
@@ -67,43 +67,43 @@ class PrivilegeBean {
         this.st = st;
     }
 
-    public int getPl() {
+    public long getPl() {
         return pl;
     }
 
-    public void setPl(int pl) {
+    public void setPl(long pl) {
         this.pl = pl;
     }
 
-    public int getDl() {
+    public long getDl() {
         return dl;
     }
 
-    public void setDl(int dl) {
+    public void setDl(long dl) {
         this.dl = dl;
     }
 
-    public int getSp() {
+    public long getSp() {
         return sp;
     }
 
-    public void setSp(int sp) {
+    public void setSp(long sp) {
         this.sp = sp;
     }
 
-    public int getCp() {
+    public long getCp() {
         return cp;
     }
 
-    public void setCp(int cp) {
+    public void setCp(long cp) {
         this.cp = cp;
     }
 
-    public int getSubp() {
+    public long getSubp() {
         return subp;
     }
 
-    public void setSubp(int subp) {
+    public void setSubp(long subp) {
         this.subp = subp;
     }
 
@@ -115,19 +115,19 @@ class PrivilegeBean {
         this.cs = cs;
     }
 
-    public int getMaxbr() {
+    public long getMaxbr() {
         return maxbr;
     }
 
-    public void setMaxbr(int maxbr) {
+    public void setMaxbr(long maxbr) {
         this.maxbr = maxbr;
     }
 
-    public int getFl() {
+    public long getFl() {
         return fl;
     }
 
-    public void setFl(int fl) {
+    public void setFl(long fl) {
         this.fl = fl;
     }
 
@@ -139,11 +139,11 @@ class PrivilegeBean {
         this.toast = toast;
     }
 
-    public int getFlag() {
+    public long getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
+    public void setFlag(long flag) {
         this.flag = flag;
     }
 

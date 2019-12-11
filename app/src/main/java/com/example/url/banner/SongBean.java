@@ -42,36 +42,36 @@ public class SongBean {
      */
 
     private String name;
-    private int id;
-    private int pst;
-    private int t;
-    private int pop;
-    private int st;
+    private long id;
+    private long pst;
+    private long t;
+    private long pop;
+    private long st;
     private String rt;
-    private int fee;
-    private int v;
+    private long fee;
+    private long v;
     private Object crbt;
     private String cf;
     private AlBean al;
-    private int dt;
+    private long dt;
     private HBean h;
     private MBean m;
     private LBean l;
     private Object a;
     private String cd;
-    private int no;
+    private long no;
     private Object rtUrl;
-    private int ftype;
-    private int djId;
-    private int copyright;
-    private int s_id;
-    private int mark;
-    private int rtype;
+    private long ftype;
+    private long djId;
+    private long copyright;
+    private long s_id;
+    private long mark;
+    private long rtype;
     private Object rurl;
-    private int mst;
-    private int cp;
-    private int mv;
-    private int publishTime;
+    private long mst;
+    private long cp;
+    private long mv;
+    private long publishTime;
     private PrivilegeBean privilege;
     private List<ArBean> ar;
     private List<?> alia;
@@ -85,43 +85,43 @@ public class SongBean {
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getPst() {
+    public long getPst() {
         return pst;
     }
 
-    public void setPst(int pst) {
+    public void setPst(long pst) {
         this.pst = pst;
     }
 
-    public int getT() {
+    public long getT() {
         return t;
     }
 
-    public void setT(int t) {
+    public void setT(long t) {
         this.t = t;
     }
 
-    public int getPop() {
+    public long getPop() {
         return pop;
     }
 
-    public void setPop(int pop) {
+    public void setPop(long pop) {
         this.pop = pop;
     }
 
-    public int getSt() {
+    public long getSt() {
         return st;
     }
 
-    public void setSt(int st) {
+    public void setSt(long st) {
         this.st = st;
     }
 
@@ -133,19 +133,19 @@ public class SongBean {
         this.rt = rt;
     }
 
-    public int getFee() {
+    public long getFee() {
         return fee;
     }
 
-    public void setFee(int fee) {
+    public void setFee(long fee) {
         this.fee = fee;
     }
 
-    public int getV() {
+    public long getV() {
         return v;
     }
 
-    public void setV(int v) {
+    public void setV(long v) {
         this.v = v;
     }
 
@@ -173,11 +173,11 @@ public class SongBean {
         this.al = al;
     }
 
-    public int getDt() {
+    public long getDt() {
         return dt;
     }
 
-    public void setDt(int dt) {
+    public void setDt(long dt) {
         this.dt = dt;
     }
 
@@ -221,11 +221,11 @@ public class SongBean {
         this.cd = cd;
     }
 
-    public int getNo() {
+    public long getNo() {
         return no;
     }
 
-    public void setNo(int no) {
+    public void setNo(long no) {
         this.no = no;
     }
 
@@ -237,15 +237,15 @@ public class SongBean {
         this.rtUrl = rtUrl;
     }
 
-    public int getFtype() {
+    public long getFtype() {
         return ftype;
     }
 
-    public void setFtype(int ftype) {
+    public void setFtype(long ftype) {
         this.ftype = ftype;
     }
 
-    public int getDjId() {
+    public long getDjId() {
         return djId;
     }
 
@@ -253,23 +253,23 @@ public class SongBean {
         this.djId = djId;
     }
 
-    public int getCopyright() {
+    public long getCopyright() {
         return copyright;
     }
 
-    public void setCopyright(int copyright) {
+    public void setCopyright(long copyright) {
         this.copyright = copyright;
     }
 
-    public int getS_id() {
+    public long getS_id() {
         return s_id;
     }
 
-    public void setS_id(int s_id) {
+    public void setS_id(long s_id) {
         this.s_id = s_id;
     }
 
-    public int getMark() {
+    public long getMark() {
         return mark;
     }
 
@@ -277,7 +277,7 @@ public class SongBean {
         this.mark = mark;
     }
 
-    public int getRtype() {
+    public long getRtype() {
         return rtype;
     }
 
@@ -293,35 +293,35 @@ public class SongBean {
         this.rurl = rurl;
     }
 
-    public int getMst() {
+    public long getMst() {
         return mst;
     }
 
-    public void setMst(int mst) {
+    public void setMst(long mst) {
         this.mst = mst;
     }
 
-    public int getCp() {
+    public long getCp() {
         return cp;
     }
 
-    public void setCp(int cp) {
+    public void setCp(long cp) {
         this.cp = cp;
     }
 
-    public int getMv() {
+    public long getMv() {
         return mv;
     }
 
-    public void setMv(int mv) {
+    public void setMv(long mv) {
         this.mv = mv;
     }
 
-    public int getPublishTime() {
+    public long getPublishTime() {
         return publishTime;
     }
 
-    public void setPublishTime(int publishTime) {
+    public void setPublishTime(long publishTime) {
         this.publishTime = publishTime;
     }
 

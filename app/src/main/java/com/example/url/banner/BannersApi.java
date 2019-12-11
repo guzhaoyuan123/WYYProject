@@ -9,14 +9,14 @@ public class BannersApi {
      * code : 200
      */
 
-    private int code;
+    private long code;
     private List<BannersBean> banners;
 
-    public int getCode() {
+    public long getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(long code) {
         this.code = code;
     }
 
