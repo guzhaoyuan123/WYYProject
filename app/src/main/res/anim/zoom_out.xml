@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    ////界面切换时退出当前界面使用的动画，先从大放小缩放，中间夹杂着透明度变化
+
+    <scale
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:pivotX="50%p"
+        android:pivotY="50%p"
+        android:toXScale="0.1"
+        android:toYScale="0.1"/>
+    <alpha
+        android:duration="@android:integer/config_mediumAnimTime"
+        android:fromAlpha ="1.0"
+        android:toAlpha="0"/>
+</set>

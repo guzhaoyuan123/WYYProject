@@ -4,33 +4,25 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
-import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.transition.Slide;
+
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
+
 import android.widget.MediaController;
-import android.widget.Toast;
+
 import android.widget.VideoView;
 
 import com.alibaba.fastjson.JSON;
-import com.example.url.shipingdizhileixing.DataBean;
-import com.example.url.shipingdizhileixing.ShiPingDiZhiApi;
+
 import com.example.url.yuncunjingxuanshiping.BrsBean;
 import com.example.url.yuncunjingxuanshiping.YunCunJingXuanSHiPing;
 import com.example.wyyproject.R;
 import com.example.wyyproject.util.Http;
 
 import java.io.IOException;
-import java.util.List;
+
 
 public class VillageOfSelectedActivity extends AppCompatActivity {
 
@@ -41,15 +33,9 @@ public class VillageOfSelectedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setEnterTransition(new Slide().setDuration(2000));
+        getWindow().setExitTransition(new Slide().setDuration(2000));
         setContentView(R.layout.activity_village_of_selected);
-
-
-//        Intent intent = getIntent();
-//        Bundle bundle = intent.getExtras();
-//        int id = bundle.getInt("id");
-//        Toast.makeText(VillageOfSelectedActivity.this, "" + id, Toast.LENGTH_LONG).show();
-//
-//        stagger4(id);
 
         // 设置标题栏回退按钮，及点击事件
         toolbar = findViewById(R.id.tool_bar);
@@ -68,18 +54,13 @@ public class VillageOfSelectedActivity extends AppCompatActivity {
         videoView = findViewById(R.id.player_list_video);
         videoView.setZOrderOnTop(true);
         videoView.setBackgroundResource(R.mipmap.xiaobeijing1);
-        videoView.setVideoPath("http://vodkgeyttp8.vod.126.net/cloudmusic/MjQ3NDQ3MjUw/89a6a279dc2acfcd068b45ce72b1f560/bf2750483ed02d4c6263dffefa5959d7.mp4?wsSecret=bbeb74cc95b97d0dbb64257f7a8ea8b3&wsTime=1576153499");
+        videoView.setVideoPath("http://vodkgeyttp8.vod.126.net/cloudmusic/MjQ3NDQ3MjUw/89a6a279dc2acfcd068b45ce72b1f560/533e4183a709699d566180ed0cd9abe9.mp4?wsSecret=8061f4ffc2feaef607c9d9b841c1f19d&wsTime=1576219346");
         //创建MediaController对象
         MediaController mediaController = new MediaController(VillageOfSelectedActivity.this);
         //VideoView与MediaController建立关联
         videoView.setMediaController(mediaController);
         //让VideoView获取焦点
         videoView.requestFocus();
-
-
-
-
-
     }
 
     //加载云村经典

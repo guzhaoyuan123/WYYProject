@@ -54,15 +54,14 @@ public class Http {
         return response.body().string();
     }
 //
-//    @NotNull
-//    public static String get2() throws IOException {
-//        OkHttpClient client = new OkHttpClient();
-//        Request request = new Request.Builder()
-//                .url("http://10.0.2.2:3000/top/mv?limit=30")
-//                .build();
-//        Response response = client.newCall(request).execute();
-//        return response.body().string();
-//    }
+    @NotNull
+    public static void get2(String url) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Response response = client.newCall(request).execute();
+    }
 
 //   https://route.showapi.com/138-46?prov=%E5%8C%97%E4%BA%AC&showapi_appid=113669&showapi_timestamp=20191113155733&showapi_sign=54943f7e45836ca5a054675105d96e4e
 //    http://apis.juhe.cn/simpleWeather/query?city=%E8%8B%8F%E5%B7%9E&key=4ae97f05f3c019e3af3d1b4289842b1e

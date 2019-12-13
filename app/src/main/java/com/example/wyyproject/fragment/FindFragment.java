@@ -1,5 +1,6 @@
 package com.example.wyyproject.fragment;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -285,6 +286,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 bundle.putInt("id",datasBeans.get(position).getId());
                 intent.putExtras(bundle);
                 startActivity(intent);
+
             }
         });
     }
