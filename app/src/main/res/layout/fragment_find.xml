@@ -1,212 +1,317 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragment.FindFragment">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            tools:context=".fragment.FindFragment">
 
-            <RelativeLayout
-                android:id="@+id/rl_adroot"
-                android:layout_width="370dp"
-                android:layout_height="130dp"
-                android:bottomRightRadius="10dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center">
 
-                >
+                <RelativeLayout
+                    android:id="@+id/rl_adroot"
+                    android:layout_width="370dp"
+                    android:layout_height="130dp"
+                    android:bottomRightRadius="10dp"
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/viewpager"
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"></androidx.viewpager.widget.ViewPager>
+                    >
 
-                <LinearLayout
-                    android:id="@+id/ly_dots"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp"
-                    android:orientation="horizontal"></LinearLayout>
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="130dp"></androidx.viewpager.widget.ViewPager>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right">
-
-                    <TextView
-                        android:id="@+id/banner_text"
+                    <LinearLayout
+                        android:id="@+id/ly_dots"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="105dp"
-                        android:background="@drawable/yuanjiao"
-                        android:text="123"
-                        android:textColor="#ffffff"
-                        android:textSize="18dp" />
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="horizontal"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <TextView
+                            android:id="@+id/banner_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="105dp"
+                            android:background="@drawable/yuanjiao"
+                            android:text="123"
+                            android:textColor="#ffffff"
+                            android:textSize="18dp" />
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="155dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@mipmap/find_meirituijian" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="每日推荐"
+                        android:textColor="#000000" />
+
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-            </RelativeLayout>
-        </LinearLayout>
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@mipmap/find_gedan" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="155dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="歌单"
+                        android:textColor="#000000" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@mipmap/find_meirituijian" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="每日推荐"
-                    android:textColor="#000000" />
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@mipmap/find_paihangbang" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="排行榜"
+                        android:textColor="#000000" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@mipmap/find_gedan" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="歌单"
-                    android:textColor="#000000" />
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@mipmap/find_diantai" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="电台"
+                        android:textColor="#000000" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@mipmap/find_paihangbang" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="排行榜"
-                    android:textColor="#000000" />
+                    <ImageView
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@mipmap/find_zhibo" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@mipmap/find_diantai" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="电台"
-                    android:textColor="#000000" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="直播"
+                        android:textColor="#000000" />
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.01dp"
+                android:layout_marginTop="245dp"
+                android:background="#A8A4A4" />
 
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@mipmap/find_zhibo" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="250dp"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="直播"
-                    android:textColor="#000000" />
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="推荐歌单"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+                <Button
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="215dp"
+                    android:background="@drawable/find_gedanguangchuang"
+                    android:gravity="center"
+                    android:text="歌单广场"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
             </LinearLayout>
 
-        </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/find_recyclerView_tuijianedan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="300dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.01dp"
-            android:layout_marginTop="245dp"
-            android:background="#A8A4A4" />
+            </androidx.recyclerview.widget.RecyclerView>
 
-        <LinearLayout
-            android:layout_marginTop="250dp"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="630dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tx_find_xindie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="新碟"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/tx_find_xinge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="新歌"
+                    android:textColor="#6B6666"
+                    android:textSize="14dp" />
+
+                <Button
+                    android:id="@+id/btn_find_xin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="210dp"
+                    android:background="@drawable/find_gedanguangchuang"
+                    android:gravity="center"
+                    android:text="更多新碟"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/find_recyclerView_xindie"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="680dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
             <TextView
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_marginLeft="15dp"
-                android:layout_height="match_parent"
-                android:text="推荐歌单"
-                android:textSize="20sp"
-                android:textColor="#000000"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:gravity="center"
-                android:layout_marginLeft="215dp"
-                android:layout_height="30dp"
-                android:text="歌单广场"
-                android:background="@drawable/find_gedanguangchuang"
-                android:textSize="15sp"
-                android:textColor="#000000"/>
-        </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="300dp"
-            android:id="@+id/find_recyclerView_tuijianedan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_marginTop="860dp"
+                android:background="#CEC8C8"
+                android:layout_height="10dp"/>
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="880dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="15dp"
+                    android:gravity="center"
+                    android:text="云村精选"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
 
 
+                <ImageView
+                    android:layout_marginLeft="215dp"
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:src="@mipmap/shuaxin"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="获取新内容"
+                    android:textColor="#000000"
+                    android:textSize="14sp" />
 
-    </FrameLayout>
-</ScrollView>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/find_recyclerView_yuncunjingxuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="930dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+
+        </FrameLayout>
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
