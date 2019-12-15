@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.example.url.shoujihaozhuce.Singin;
 import com.example.url.yanzhengma.CodeApi;
-import com.example.wyyproject.MainActivity;
 import com.example.wyyproject.R;
 import com.example.wyyproject.util.Http;
 
@@ -142,7 +141,7 @@ public class CodeActivity extends AppCompatActivity {
                                                 @Override
                                                 public void run() {
                                                     if (singin.getExist()==1){
-                                                        Intent intent = new Intent(CodeActivity.this, MainActivity.class);
+                                                        Intent intent = new Intent(CodeActivity.this, NavigationActivity.class);
                                                         startActivity(intent);
                                                     }
                                                     else {

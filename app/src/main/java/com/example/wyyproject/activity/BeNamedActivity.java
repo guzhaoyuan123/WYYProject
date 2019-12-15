@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import com.alibaba.fastjson.JSON;
 import com.example.url.zhuce.ZhuCeApi;
-import com.example.wyyproject.MainActivity;
 import com.example.wyyproject.R;
 import com.example.wyyproject.util.Http;
 
@@ -72,7 +71,7 @@ public class BeNamedActivity extends AppCompatActivity {
                                     public void run() {
                                         try {
                                             String  json2 = Http.get("http://10.0.2.2:3000/register/cellphone?phone="+shouji+"&password="+mima+"&captcha="+yanzhengma+"&nickname="+s+"");
-                                            Intent intent = new Intent(BeNamedActivity.this,MainActivity.class);
+                                            Intent intent = new Intent(BeNamedActivity.this,NavigationActivity.class);
                                               startActivity(intent);
                                         } catch (IOException e) {
                                             e.printStackTrace();
@@ -83,7 +82,7 @@ public class BeNamedActivity extends AppCompatActivity {
 
                             }
                             else {
-                                Intent intent = new Intent(BeNamedActivity.this,MainActivity.class);
+                                Intent intent = new Intent(BeNamedActivity.this,NavigationActivity.class);
                                 startActivity(intent);
                             }
                         }

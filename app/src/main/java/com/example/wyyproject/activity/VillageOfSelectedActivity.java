@@ -1,27 +1,24 @@
 package com.example.wyyproject.activity;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Slide;
-
 import android.view.View;
-
 import android.widget.MediaController;
-
 import android.widget.VideoView;
 
 import com.alibaba.fastjson.JSON;
-
 import com.example.url.yuncunjingxuanshiping.BrsBean;
 import com.example.url.yuncunjingxuanshiping.YunCunJingXuanSHiPing;
 import com.example.wyyproject.R;
 import com.example.wyyproject.util.Http;
 
 import java.io.IOException;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 
 public class VillageOfSelectedActivity extends AppCompatActivity {
@@ -54,7 +51,7 @@ public class VillageOfSelectedActivity extends AppCompatActivity {
         videoView = findViewById(R.id.player_list_video);
         videoView.setZOrderOnTop(true);
         videoView.setBackgroundResource(R.mipmap.xiaobeijing1);
-        videoView.setVideoPath("http://vodkgeyttp8.vod.126.net/cloudmusic/MjQ3NDQ3MjUw/89a6a279dc2acfcd068b45ce72b1f560/533e4183a709699d566180ed0cd9abe9.mp4?wsSecret=8061f4ffc2feaef607c9d9b841c1f19d&wsTime=1576219346");
+        videoView.setVideoPath("https://htmlpicture.oss-cn-beijing.aliyuncs.com/baidong.mp4");
         //创建MediaController对象
         MediaController mediaController = new MediaController(VillageOfSelectedActivity.this);
         //VideoView与MediaController建立关联
