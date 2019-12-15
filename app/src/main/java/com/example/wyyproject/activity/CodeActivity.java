@@ -142,11 +142,13 @@ public class CodeActivity extends AppCompatActivity {
                                                 @Override
                                                 public void run() {
                                                     if (singin.getExist()==1){
-                                                        Intent intent = new Intent(CodeActivity.this, SignInActivity.class);
+                                                        Intent intent = new Intent(CodeActivity.this, MainActivity.class);
                                                         startActivity(intent);
                                                     }
                                                     else {
-                                                        Intent intent = new Intent(CodeActivity.this, MainActivity.class);
+                                                        Intent intent = new Intent(CodeActivity.this, SignInActivity.class);
+                                                        intent.putExtra("shoujihaoma",phonename);
+                                                        intent.putExtra("yanzhengma",phonecode);
                                                         startActivity(intent);
                                                     }
                                                 }

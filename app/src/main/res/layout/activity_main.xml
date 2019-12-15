@@ -9,16 +9,20 @@
     tools:context=".MainActivity">
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal">
-        <ImageView
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_marginLeft="10dp"
             android:layout_gravity="center"
+            android:id="@+id/tool_barT"
             android:layout_width="40dp"
-            android:padding="10dp"
-            android:layout_height="40dp"
-            android:src="@mipmap/daohang"/>
+            android:layout_height="40dp">
+
+        </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
@@ -38,7 +42,7 @@
 
         <ImageView
             android:padding="10dp"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="15dp"
             android:layout_gravity="center"
             android:layout_width="40dp"
             android:layout_height="40dp"

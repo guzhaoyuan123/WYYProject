@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wyyproject.MainActivity;
 import com.example.wyyproject.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -61,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             case R.id.btn_login_log:
                 if (cxApply.isChecked()) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
                 } else {

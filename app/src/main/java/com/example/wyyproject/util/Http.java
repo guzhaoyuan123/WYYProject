@@ -1,6 +1,5 @@
 package com.example.wyyproject.util;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -44,7 +43,6 @@ public class Http {
         return result;
     }
     //    获取新闻json数据
-    @NotNull
     public static String get(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -54,7 +52,7 @@ public class Http {
         return response.body().string();
     }
 //
-    @NotNull
+
     public static void get2(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -67,7 +65,7 @@ public class Http {
 //    http://apis.juhe.cn/simpleWeather/query?city=%E8%8B%8F%E5%B7%9E&key=4ae97f05f3c019e3af3d1b4289842b1e
 
     //    获取城市数据
-    @NotNull
+
     public static String getCityWeather(String cityname) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -79,7 +77,7 @@ public class Http {
 
 
     //    获取城市油价数据
-    @NotNull
+
     public static String getOil(String cityname) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -90,7 +88,7 @@ public class Http {
     }
 
     //    获取种类新闻
-    @NotNull
+
     public static String getType(String type) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
