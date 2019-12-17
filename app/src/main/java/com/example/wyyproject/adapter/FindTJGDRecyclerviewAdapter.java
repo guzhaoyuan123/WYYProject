@@ -49,6 +49,7 @@ public class FindTJGDRecyclerviewAdapter extends RecyclerView.Adapter<FindTJGDRe
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int i) {
         holder.tvTitle1.setText(resultBeans.get(i).getName());
+//        调节图片圆角
         RoundedCorners roundedCorners= new RoundedCorners(10);
         RequestOptions options=RequestOptions.bitmapTransform(roundedCorners);
         Glide.with(context).load(resultBeans.get(i).getPicUrl()).apply(options).into(holder.imgView);

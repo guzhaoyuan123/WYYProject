@@ -40,5 +40,4 @@ public class ImageViewPagerAdapter extends PagerAdapter {
 		container.addView(imageViews[position], 0);
 		return imageViews[position];
 	}
-
 }

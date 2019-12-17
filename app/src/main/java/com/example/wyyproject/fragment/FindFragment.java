@@ -1,17 +1,8 @@
 package com.example.wyyproject.fragment;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.viewpager.widget.ViewPager;
-
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -30,7 +21,6 @@ import com.example.url.tuijiangedan.RecommendThePlayList;
 import com.example.url.tuijiangedan.ResultBean;
 import com.example.url.xindie.AlbumsBean;
 import com.example.url.xindie.TheNewDisc;
-import com.example.url.yuncunjingxuanshiping.YunCunJingXuanSHiPing;
 import com.example.wyyproject.R;
 import com.example.wyyproject.activity.VillageOfSelectedActivity;
 import com.example.wyyproject.adapter.FindTJGDRecyclerviewAdapter;
@@ -42,6 +32,13 @@ import com.example.wyyproject.util.Http;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.viewpager.widget.ViewPager;
 
 public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private ViewPager viewpager;
@@ -88,6 +85,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         btn_find_xin = view.findViewById(R.id.btn_find_xin);
         find_recyclerView_yuncunjingxuan = view.findViewById(R.id.find_recyclerView_yuncunjingxuan);
 
+//        下拉刷新
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setColorSchemeResources(
                 android.R.color.holo_red_light,
@@ -331,15 +329,15 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         }
 
         urls = new String[9];
-        urls[0] = "http://p1.music.126.net/7m1I7vN1I2GG8CfdSuuOGg==/109951164541812713.jpg";
-        urls[1] = "http://p1.music.126.net/txHzpAz0olg66HUui63SYg==/109951164540646877.jpg";
-        urls[2] = "http://p1.music.126.net/3P_GTY-NoT3aMbK5lojH5Q==/109951164539469611.jpg";
-        urls[3] = "http://p1.music.126.net/Bim8lgeR1zIrlN3E6ch0rg==/109951164539479095.jpg";
-        urls[4] = "http://p1.music.126.net/J3dne91V0qT83Nb7Cyh-Og==/109951164540565706.jpg";
-        urls[5] = "http://p1.music.126.net/4u7_5blIAOX_Y-pDFupGlA==/109951164541270379.jpg";
-        urls[6] = "http://p1.music.126.net/8dWnTFGyrWODvRDdJ1ocyg==/109951164541034056.jpg";
-        urls[7] = "http://p1.music.126.net/TB-Glz3N4HB7f2Hm7jGqUQ==/109951164539493809.jpg";
-        urls[8] = "http://p1.music.126.net/RUuYaG2tgN2rluLYqm1j8w==/109951164539521533.jpg";
+        urls[0] = bannersApi.getBanners().get(0).getPic();
+        urls[1] = bannersApi.getBanners().get(1).getPic();
+        urls[2] = bannersApi.getBanners().get(2).getPic();
+        urls[3] = bannersApi.getBanners().get(3).getPic();
+        urls[4] = bannersApi.getBanners().get(4).getPic();
+        urls[5] = bannersApi.getBanners().get(5).getPic();
+        urls[6] = bannersApi.getBanners().get(6).getPic();
+        urls[7] = bannersApi.getBanners().get(7).getPic();
+        urls[8] = bannersApi.getBanners().get(8).getPic();
         adViewpagerUtil = new AdViewpagerUtil(getContext(), viewpager, lydots, 8, 4, urls);
         adViewpagerUtil.initVps();
         if (bannersApi.getBanners().get(0).getTitleColor().equals("red")) {
