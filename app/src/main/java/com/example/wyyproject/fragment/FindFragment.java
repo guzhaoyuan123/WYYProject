@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import com.example.url.tuijiangedan.ResultBean;
 import com.example.url.xindie.AlbumsBean;
 import com.example.url.xindie.TheNewDisc;
 import com.example.wyyproject.R;
+import com.example.wyyproject.activity.RecommendedDailyActivity;
 import com.example.wyyproject.activity.VillageOfSelectedActivity;
 import com.example.wyyproject.adapter.FindTJGDRecyclerviewAdapter;
 import com.example.wyyproject.adapter.FindXDRecyclerviewAdapter;
@@ -52,6 +54,8 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     private Button btn_find_xin;
     private SwipeRefreshLayout refreshLayout;
+
+    private ImageView imageView;
 
     public FindFragment() {
 
@@ -85,6 +89,8 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         btn_find_xin = view.findViewById(R.id.btn_find_xin);
         find_recyclerView_yuncunjingxuan = view.findViewById(R.id.find_recyclerView_yuncunjingxuan);
 
+        imageView=view.findViewById(R.id.img_find_meirituijian);
+
 //        下拉刷新
         refreshLayout.setOnRefreshListener(this);
         refreshLayout.setColorSchemeResources(
@@ -105,6 +111,8 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         textView1.setOnClickListener(this);
         textView2.setOnClickListener(this);
+
+        imageView.setOnClickListener(this);
         return view;
     }
 
@@ -249,7 +257,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                     String json = Http.get("http://10.0.2.2:3000/top/mv?limit=30");
                     Log.e("????????????", "" + json);
                     ShiPingDiZhiApi shiPingDiZhiApi = JSON.parseObject(json, ShiPingDiZhiApi.class);
-                   List<DataBean> datasBeans = shiPingDiZhiApi.getData();
+                    List<DataBean> datasBeans = shiPingDiZhiApi.getData();
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -268,9 +276,6 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 1, GridLayoutManager.VERTICAL, false);
         find_recyclerView_yuncunjingxuan.setLayoutManager(layoutManager);
 
-
-        // recyclerView.setLayoutManager(new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false));
-
         FindYCJXRecyclerviewAdapter adapter = new FindYCJXRecyclerviewAdapter(getContext(), datasBeans);
         find_recyclerView_yuncunjingxuan.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -281,7 +286,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 //
                 Intent intent = new Intent(getContext(), VillageOfSelectedActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putInt("id",datasBeans.get(position).getId());
+                bundle.putInt("id", datasBeans.get(position).getId());
                 intent.putExtras(bundle);
                 startActivity(intent);
 
@@ -426,8 +431,10 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             textView1.setTextColor(getResources().getColor(R.color.selectCheck));
             Toast.makeText(getContext(), "点击了新歌", Toast.LENGTH_LONG).show();
             btn_find_xin.setText("新歌推荐");
-
         }
-
+        if (view.getId() == R.id.img_find_meirituijian) {
+           Intent intent = new Intent(getContext(), RecommendedDailyActivity.class);
+           startActivity(intent);
+        }
     }
 }

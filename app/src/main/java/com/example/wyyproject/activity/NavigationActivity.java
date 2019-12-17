@@ -39,7 +39,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -114,10 +113,13 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         viewPager = findViewById(R.id.fl_monetary_replace);
         refreshLayout=findViewById(R.id.refreshLayout);
 
-
-
-
         initView();
+
+        initPager();
+
+    }
+
+    private void initView() {
         titles= new ArrayList<>();
         titles.add("演出");
         titles.add("商城");
@@ -156,12 +158,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
 
 
         fixListViewHeight(NavigationListview);
-        initPager();
-
-    }
-
-    private void initView() {
-
     }
 
     public void fixListViewHeight(ListView listView) {
@@ -267,32 +263,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-        }
-    }
-
-    @OnClick({R.id.img_navigation_touxiang, R.id.tx_navigation_nicname, R.id.btn_navigation_qiandao, R.id.img_navigation_wodexiaoxi, R.id.img_navigation_wodehaoyou, R.id.img_navigation_tinggeshiqu, R.id.img_navigation_gexingzhuangban, R.id.img_navigation_yejianmoshi, R.id.img_navigation_shezhi, R.id.img_navigation_tuichu})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_navigation_touxiang:
-                break;
-            case R.id.tx_navigation_nicname:
-                break;
-            case R.id.btn_navigation_qiandao:
-                break;
-            case R.id.img_navigation_wodexiaoxi:
-                break;
-            case R.id.img_navigation_wodehaoyou:
-                break;
-            case R.id.img_navigation_tinggeshiqu:
-                break;
-            case R.id.img_navigation_gexingzhuangban:
-                break;
-            case R.id.img_navigation_yejianmoshi:
-                break;
-            case R.id.img_navigation_shezhi:
-                break;
-            case R.id.img_navigation_tuichu:
-                break;
         }
     }
 }

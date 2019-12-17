@@ -3,19 +3,20 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#00000000</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- 修改toolbar图标的颜色-->
-        <item name="android:textColorSecondary">#ffffff</item>
-        <!--修改toolbar文字颜色-->
-        <item name="android:textColorPrimary">#ffffff</item>
+
     </style>
 
 
     <style name="TabLayoutTextStyle" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">18sp</item>
         <!--        <item name="android:textStyle">bold</item>-->
+    </style>
+
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
     </style>
 
 

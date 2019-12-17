@@ -1,6 +1,8 @@
 package com.example.wyyproject.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
@@ -22,6 +24,7 @@ public class RecommendedDailyActivity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private ListView listView;
+    private Menu id;
 
     private List<String> titles = new ArrayList<>();
     @Override
@@ -30,6 +33,8 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recommended_daily);
         toolbar = findViewById(R.id.toolbar);
 
+        id=findViewById(R.id.menu_add);
+
         appBarLayout = findViewById(R.id.appbar);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
@@ -37,19 +42,19 @@ public class RecommendedDailyActivity extends AppCompatActivity {
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
                 if( state == State.EXPANDED ) {
                     //展开状态
-                    toolbar.setNavigationIcon(R.mipmap.wxr2);
+                    toolbar.setNavigationIcon(R.mipmap.return2);
                 }else if(state == State.COLLAPSED){
                     //折叠状态
-                    toolbar.setNavigationIcon(R.mipmap.wxr);
+                    toolbar.setNavigationIcon(R.mipmap.return2);
+
+                    toolbar.setTitleTextColor(Color.WHITE);
                     toolbar.setTitle("每日推荐");
                 }else {
                     //中间状态
-                    toolbar.setNavigationIcon(R.mipmap.bofang4);
+                    toolbar.setNavigationIcon(R.mipmap.return2);
                 }
             }
         });
-
-
 
         titles = new ArrayList<>();
         titles.add("演出");
@@ -101,4 +106,14 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
+
+    //创建选项菜单OptionMenu
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.talk, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    //        处理选项菜单的点击事件
+
+
 }
