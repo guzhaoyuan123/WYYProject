@@ -107,6 +107,9 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         listView.setLayoutParams(params);
     }
 
+
+
+
     //创建选项菜单OptionMenu
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
