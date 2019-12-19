@@ -13,9 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.RecommendedDailyActivity">
-
-        </activity>
+        <activity android:name=".activity.TroubleShootingActivity"></activity>
+        <activity android:name=".activity.RecommendedDailyActivity"></activity>
         <activity android:name=".activity.NavigationActivity" />
         <activity android:name=".activity.BeNamedActivity" />
         <activity android:name=".activity.SignInActivity" />
@@ -23,6 +22,7 @@
         <activity
             android:name=".activity.PhoneLoginActivity"
             android:launchMode="singleInstance" />
+
         <activity
             android:name=".activity.LoginActivity"
             android:launchMode="singleInstance">
@@ -31,11 +31,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".activity.VillageOfSelectedActivity"
             android:launchMode="singleInstance" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>

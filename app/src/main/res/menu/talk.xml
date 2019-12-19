@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_add"
-        android:icon="@mipmap/toolbar_add"
-        android:title="@string/app_name"
+        android:id="@+id/wenti"
+        android:icon="@mipmap/wenti"
+        android:title="每日推荐"
         app:showAsAction="always">
     </item>
 

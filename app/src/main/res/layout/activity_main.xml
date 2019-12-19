@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:background="#ffffff"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
 
 
     <LinearLayout
@@ -17,56 +15,51 @@
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.Toolbar
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
             android:id="@+id/tool_barT"
             android:layout_width="40dp"
-            android:layout_height="40dp">
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp">
 
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
-            android:layout_gravity="center"
             android:layout_width="280dp"
-            android:layout_marginLeft="20dp"
             android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
             app:tabGravity="center"
-            app:tabIndicatorFullWidth="false"
             app:tabIndicatorColor="#7f7f7f"
-            app:tabPadding="5dp"
-            app:tabMinWidth="70dp"
+            app:tabIndicatorFullWidth="false"
             app:tabIndicatorHeight="0dp"
+            app:tabMinWidth="70dp"
+            app:tabPadding="5dp"
             app:tabSelectedTextColor="#343434"
-            app:tabTextAppearance="@style/TabLayoutTextStyle">
-        </com.google.android.material.tabs.TabLayout>
+            app:tabTextAppearance="@style/TabLayoutTextStyle"></com.google.android.material.tabs.TabLayout>
 
         <ImageView
-            android:padding="10dp"
-            android:layout_marginLeft="15dp"
-            android:layout_gravity="center"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@mipmap/soushuo"/>
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:padding="10dp"
+            android:src="@mipmap/soushuo" />
 
     </LinearLayout>
 
     <androidx.viewpager.widget.ViewPager
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/fl_monetary_replace"
-        android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        >
-    </androidx.viewpager.widget.ViewPager>
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"></androidx.viewpager.widget.ViewPager>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp">
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

@@ -33,26 +33,27 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.android.support:design:29.1.1'
+    //    recyclerview列表
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    //    卡片样式
     implementation 'androidx.cardview:cardview:1.0.0'
-
+    //    网络请求
     implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    //    json解析数据包
     implementation 'com.alibaba:fastjson:1.1.71.android'
-
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
     //    视频
     implementation 'com.facebook.fresco:fresco:0.9.0'
+    //    网络获取图片
     annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
-
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    //    findByView快捷键
     implementation 'com.jakewharton:butterknife:10.2.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
-
     //    轮播图
     implementation 'com.youth.banner:banner:1.4.10'
-
-
+    //    圆形头像
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
 

@@ -11,7 +11,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:background="@mipmap/b5s"
+        android:background="@mipmap/tupian"
         android:fitsSystemWindows="true">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
@@ -29,9 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                android:theme="@style/AppTheme"
+                app:navigationIcon="@mipmap/return2"
                 app:title="每日推荐"
-                app:titleTextColor="#ffffff"
-                app:titleTextAppearance="@style/Toolbar.TitleText">
+                app:titleTextColor="#ffffff">
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -97,7 +98,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="16dp">
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp">
                 <ListView
                     android:id="@+id/listVIew"
                     android:layout_width="match_parent"

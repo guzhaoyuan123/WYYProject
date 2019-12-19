@@ -1,18 +1,28 @@
 package com.example.wyyproject.activity;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
+import com.example.url.meirituijian.EveryDaygeApi;
+import com.example.url.meirituijian.PlaylistBean;
+import com.example.url.meirituijian.TracksBean;
 import com.example.wyyproject.R;
 import com.example.wyyproject.adapter.EveryDayTuiJianAdapter;
 import com.example.wyyproject.util.AppBarStateChangeListener;
+import com.example.wyyproject.util.Http;
 import com.google.android.material.appbar.AppBarLayout;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,56 +42,84 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommended_daily);
         toolbar = findViewById(R.id.toolbar);
-
-        id=findViewById(R.id.menu_add);
-
         appBarLayout = findViewById(R.id.appbar);
-
         appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
                 if( state == State.EXPANDED ) {
                     //展开状态
                     toolbar.setNavigationIcon(R.mipmap.return2);
+                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            RecommendedDailyActivity.this.finish();
+                        }
+                    });
+
                 }else if(state == State.COLLAPSED){
                     //折叠状态
                     toolbar.setNavigationIcon(R.mipmap.return2);
+                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            RecommendedDailyActivity.this.finish();
+                        }
+                    });
 
-                    toolbar.setTitleTextColor(Color.WHITE);
-                    toolbar.setTitle("每日推荐");
                 }else {
                     //中间状态
                     toolbar.setNavigationIcon(R.mipmap.return2);
+                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            RecommendedDailyActivity.this.finish();
+                        }
+                    });
                 }
             }
         });
 
-        titles = new ArrayList<>();
-        titles.add("演出");
-        titles.add("商城");
-        titles.add("附近的人");
-        titles.add("游戏推荐");
-        titles.add("口袋彩铃");
-        titles.add("创作者中心");
-        titles.add("我的订单");
-        titles.add("定时停止播放");
-        titles.add("扫一扫");
-        titles.add("音乐闹钟");
-        titles.add("音乐云盘");
-        titles.add("在线听歌免流量");
-        titles.add("优惠券");
-        titles.add("青少年模式");
-        titles.add("青少年模式");
-        titles.add("青少年模式");
-        titles.add("青少年模式");
-        titles.add("青少年模式");
-        titles.add("青少年模式");
-
-
+        setSupportActionBar(toolbar);
         listView=findViewById(R.id.listVIew);
-        EveryDayTuiJianAdapter adapter = new EveryDayTuiJianAdapter(this, titles);
+        initView();
+
+    }
+    //加载新歌
+    private void initView() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    String json = Http.get("http://10.0.2.2:3000/top/list?idx=1");
+                    Log.e(">>>>>>",""+json);
+                    EveryDaygeApi api = JSON.parseObject(json, EveryDaygeApi.class);
+
+                    PlaylistBean beans = api.getPlaylist();
+                    List<TracksBean> tracksBeans = beans.getTracks();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            showXin(tracksBeans);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    //展示新歌
+    private void showXin(List<TracksBean> beans) {
+        EveryDayTuiJianAdapter adapter = new EveryDayTuiJianAdapter(this, beans);
         listView.setAdapter(adapter);
         fixListViewHeight(listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(RecommendedDailyActivity.this,"好的",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
@@ -117,6 +155,16 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
     //        处理选项菜单的点击事件
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.wenti:
+                Intent intent = new Intent(RecommendedDailyActivity.this,TroubleShootingActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
 
 
 }

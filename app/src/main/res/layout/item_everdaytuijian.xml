@@ -9,7 +9,7 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:layout_gravity="center"
-        android:id="@+id/img_navigation_touxiang"
+        android:id="@+id/item_img_navigation_touxiang"
         android:padding="5dp"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -30,6 +30,7 @@
            android:orientation="horizontal">
 
            <TextView
+               android:id="@+id/item_tx_navigation_geming"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -37,6 +38,7 @@
                android:textColor="#333333"
                android:textSize="20dp"/>
            <TextView
+               android:id="@+id/item_tx_navigation_dianshiju"
                android:layout_gravity="center"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -54,40 +56,58 @@
            android:layout_height="wrap_content"
            android:orientation="horizontal">
            <ImageView
+               android:id="@+id/item_img_navigation_dujia"
                android:layout_gravity="center"
                android:padding="3dp"
                android:layout_width="30dp"
                android:layout_height="20dp"
                android:scaleType="fitXY"
                android:src="@mipmap/dujia"/>
+
            <ImageView
+               android:id="@+id/item_img_navigation_sq"
+               android:layout_width="35dp"
+               android:layout_height="20dp"
                android:layout_gravity="center"
                android:padding="3dp"
-               android:layout_width="30dp"
-               android:layout_height="20dp"
                android:scaleType="fitXY"
-               android:src="@mipmap/sq"/>
+               android:src="@mipmap/sq" />
+           <TextView
+               android:id="@+id/item_tx_navigation_zuozhe"
+               android:layout_marginLeft="5dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="萨顶顶"
+               android:lines="1"
+               android:ellipsize="end"/>
            <TextView
                android:layout_marginLeft="5dp"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:text="萨顶顶 -香蜜沉沉烬如霜 电视剧片尾曲"
+               android:text="-"
                android:lines="1"
                android:ellipsize="end"/>
-
+           <TextView
+               android:id="@+id/item_tx_navigation_geming2"
+               android:layout_marginLeft="5dp"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="好几年"
+               android:lines="1"
+               android:ellipsize="end"/>
        </LinearLayout>
 
    </LinearLayout>
     <ImageView
         android:layout_marginLeft="10dp"
         android:layout_gravity="center"
-        android:layout_width="30dp"
+        android:layout_width="20dp"
         android:layout_height="25dp"
         android:scaleType="fitXY"
         android:src="@mipmap/bofang4"/>
 
     <ImageView
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="5dp"
         android:layout_gravity="center"
         android:layout_width="35dp"
         android:layout_height="30dp"

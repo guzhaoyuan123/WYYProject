@@ -329,9 +329,6 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         titles[6] = bannersApi.getBanners().get(6).getTypeTitle();
         titles[7] = bannersApi.getBanners().get(7).getTypeTitle();
         titles[8] = bannersApi.getBanners().get(8).getTypeTitle();
-        for (String str : titles) {
-            Log.e("str：", str);
-        }
 
         urls = new String[9];
         urls[0] = bannersApi.getBanners().get(0).getPic();

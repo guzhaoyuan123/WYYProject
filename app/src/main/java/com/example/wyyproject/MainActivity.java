@@ -1,14 +1,8 @@
 package com.example.wyyproject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.wyyproject.adapter.MainFragmentAdapter;
@@ -21,6 +15,11 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 public class MainActivity extends AppCompatActivity {
 
     private Fragment blank;
@@ -32,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
 
     private ViewPager viewPager;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.fl_monetary_replace);
+        toolbar = findViewById(R.id.tool_barT);
+        setSupportActionBar(toolbar);
         initPager();
     }
 
