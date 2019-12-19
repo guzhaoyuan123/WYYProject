@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.url.meirituijian.EveryDaygeApi;
@@ -109,7 +108,6 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         }).start();
     }
 
-    //展示新歌
     private void showXin(List<TracksBean> beans) {
         EveryDayTuiJianAdapter adapter = new EveryDayTuiJianAdapter(this, beans);
         listView.setAdapter(adapter);
@@ -117,7 +115,12 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(RecommendedDailyActivity.this,"好的",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(RecommendedDailyActivity.this,MusicActivity.class);
+                intent.putExtra("musicZuozhe",beans.get(i).getAr().get(0).getName());
+                intent.putExtra("musicPicture",beans.get(i).getAl().getPicUrl());
+                intent.putExtra("musicName",beans.get(i).getName());
+                intent.putExtra("musicId",beans.get(i).getId());
+                startActivity(intent);
             }
         });
     }
