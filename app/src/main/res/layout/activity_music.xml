@@ -4,14 +4,13 @@
     android:layout_height="match_parent"
 
     android:orientation="vertical">
-    //设置背景图片
 
     <ImageView
-        android:id="@+id/listen_background_iv"
+        android:id="@+id/img_mus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@mipmap/bo01" />
+        android:src="@mipmap/mohutupian2" />
 
     <RelativeLayout
         android:id="@+id/listen_rl"
@@ -53,6 +52,7 @@
             android:textSize="15sp" />
 
         <ImageView
+            android:id="@+id/img_music_fenxiang"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentEnd="true"

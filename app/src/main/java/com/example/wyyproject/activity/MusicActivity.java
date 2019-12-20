@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.example.url.music.DataBean;
 import com.example.url.music.Music;
 import com.example.wyyproject.R;
+import com.example.wyyproject.util.Common;
 import com.example.wyyproject.util.Http;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -42,7 +43,10 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     private ObjectAnimator animator;
     private TextView currentTv;
     private TextView totalTv;
-    private int totalTime;
+    private ImageView imgMusicFanhui,imgMusicFenXiang;
+    private TextView imgMusicGeMinga;
+    private TextView imgMusicZuoZhe;
+    private int position;
     private SeekBar jindutiaoSb;
     private boolean isStop;
     //接受多线程信息，安卓中不允许主线程实现UI更新
@@ -50,24 +54,13 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-
-            float c = msg.what;
-            jindutiaoSb.setProgress((int)(c/totalTime*100));
+            jindutiaoSb.setProgress(msg.what);
             currentTv.setText(formatTime(msg.what));
-
         }
     };
 
 
 
-//     //加载背景，
-//            Glide.with(MusicPlayerActivity.this)
-//                    .load(service.getImageUri())
-//                    .dontAnimate()
-//                    .error(R.drawable.no_music_rotate_img)
-//                    // 设置高斯模糊
-//                    .bitmapTransform(new BlurTransformation(this, 14, 3))
-//                    .into(allBg);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,32 +68,24 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_music);
 
         Intent intent = getIntent();
-        String id=intent.getStringExtra("musicId");
-        String name=intent.getStringExtra("musicName");
-        String zuozhe=intent.getStringExtra("musicZuozhe");
-        String picture=intent.getStringExtra("musicPicture");
-
-
-        Link();//绑定ID方法
-        initView(id);
-            Glide.with(this)
-                    .load(picture)
-                    // 25：模糊半径，越大图片越模糊 范围：1-25，1：缩放倍数
-//                    .bitmapTransform(new BlurTransformation(this, 25,1))
-//                    .bitmapTransform(new BlurTransformation(this, 14, 3))
-                    .into(discsmap);
+        String id = intent.getStringExtra("musicId");
+//        String name = intent.getStringExtra("musicName");
+//        String zuozhe = intent.getStringExtra("musicZuozhe");
+//        String picture = intent.getStringExtra("musicPicture");
+        position=intent.getIntExtra("postion",0);
 
 
 
-
-//获取传值
-//获取mediaplayer
+        Link();
+        initView(id,position);
+//
+//        Glide.with(this).load(picture).into(discsmap);
         mediaPlayer = new MediaPlayer();
+        backIv.setOnClickListener(this);
+        nextIv.setOnClickListener(this);
+        pauseIv.setOnClickListener(this);
+        imgMusicFenXiang.setOnClickListener(this);
 
-
-
-
-/////////////////////////获取进度条点击位置并使歌曲跳转到该位置////////////////////////////////////
         jindutiaoSb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -121,19 +106,20 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    private void initView(String id) {
+    private void initView(String id,int position) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    String json = Http.get("http://10.0.2.2:3000/song/url?id="+id+"");
+                    String json = Http.get("http://10.0.2.2:3000/song/url?id=" + id + "");
                     Log.e("????????????", "" + json);
                     Music music = JSON.parseObject(json, Music.class);
                     List<DataBean> datasBeans = music.getData();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            play(datasBeans.get(0).getUrl(),datasBeans.get(0).getSize());//歌曲播放及一系列操作方法
+
+                            play(datasBeans.get(0).getUrl(), datasBeans.get(0).getSize(),position);//歌曲播放及一系列操作方法
                         }
                     });
                 } catch (IOException e) {
@@ -144,59 +130,55 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
-    private void play(String path,int length) {
+    private void play(String path, int length,int position) {
+        imgMusicGeMinga.setText(Common.musicList.get(position).getName());
+        imgMusicZuoZhe.setText(Common.musicList.get(position).getAr().get(0).getName());
+        Glide.with(this).load(Common.musicList.get(position).getAl().getPicUrl()).into(discsmap);
 
         mediaPlayer.reset();
-
-        /////////////////////歌曲播放////////////////////////////////////////////////////
         try {
             mediaPlayer.setDataSource(path);
             mediaPlayer.prepare();
             mediaPlayer.start();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        backIv.setOnClickListener(this);
-        nextIv.setOnClickListener(this);
-        pauseIv.setOnClickListener(this);
-
-        ///////////////////////////////////唱片打碟/////////////////////////////////////////////
         animator = ObjectAnimator.ofFloat(discsmap, "rotation", 0f, 360.0f);
         animator.setDuration(10000);
-        animator.setInterpolator(new LinearInterpolator());//匀速
-        animator.setRepeatCount(-1);//设置动画重复次数（-1代表一直转）
-        animator.setRepeatMode(ValueAnimator.RESTART);//动画重复模式
+        animator.setInterpolator(new LinearInterpolator());
+        animator.setRepeatCount(-1);
+        animator.setRepeatMode(ValueAnimator.RESTART);
         animator.start();
 
-        ////////////////////////////////进度条/////////////////////////////////////////////////
-
         totalTv.setText(formatTime(length));
-        totalTime = length;
-        new Thread(new SeekBarThread()).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mediaPlayer != null && isStop == false) {
+                    handler.sendEmptyMessage(mediaPlayer.getCurrentPosition());
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
         jindutiaoSb.setMax(length);
-
-        ////////////////////////////指针拨动////////////////////////////////////////////////////
-//        animator1 = ObjectAnimator.ofFloat(zhizhenmap, "rotation", -60f, 0.0f);
-//        animator1.setDuration(900);
-//        animator1.setRepeatCount(0);//设置动画重复次数（-1代表一直转）
-//        animator1.start();
     }
-
-    ///////////////获取歌曲时常///////////////////////
     private String formatTime(int length) {
         Date date = new Date(length);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("m:ss");
         String TotalTime = simpleDateFormat.format(date);
-
         return TotalTime;
-
     }
 
     private void Link() {
-
+        imgMusicFanhui=findViewById(R.id.img_music_fanhui);
+        imgMusicFenXiang=findViewById(R.id.img_music_fenxiang);
+        imgMusicGeMinga=findViewById(R.id.tx_music_geming);
+        imgMusicZuoZhe=findViewById(R.id.tx_music_zuozhe);
         backIv = findViewById(R.id.listen_back_img);
         nextIv = findViewById(R.id.listen_next_img);
         discsmap = findViewById(R.id.round_music_changpian);
@@ -204,43 +186,47 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         currentTv = findViewById(R.id.listen_current_tv);
         totalTv = findViewById(R.id.listen_length_tv);
         jindutiaoSb = findViewById(R.id.listen_jindutiao_sb);
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.img_music_fanhui:
+                MusicActivity.this.finish();
+                break;
             case R.id.listen_back_img:
-//                position--;
-//                if (position == -1) {
-//                    position = Common.musicList.size() - 1;
-//                }
-//                play("",10);
+                --position;
+                Log.e("=====88888==",""+position);
+
+                if (position == -1) {
+                    position = Common.musicList.size()-1;
+                    initView(Common.musicList.get(position).getId(),position);
+                    Log.e(">>>>>>>>>>>>>","kkkkkkkk==="+position);
+                    break;
+                }
+                initView(Common.musicList.get(position).getId(),position);
+
                 break;
             case R.id.listen_next_img:
-//                position++;
-//                if (position == Common.musicList.size()) {
-//                    position = 0;
-//                }
-//                play();
+                ++position;
+                if (position == Common.musicList.size()) {
+                    position = 0;
+                }
+                initView(Common.musicList.get(position).getId(),position);
             case R.id.listen_pause1_img:
 
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
                     animator.pause();
-                    pauseIv.setImageResource(R.mipmap.wxr2);
+                    pauseIv.setImageResource(R.mipmap.starplay);
                 } else {
                     mediaPlayer.start();
-                    pauseIv.setImageResource(R.mipmap.starplay);
+                    pauseIv.setImageResource(R.mipmap.stopplay);
                     animator.resume();
-//                    animator1.resume();
-
                 }
             default:
                 break;
-
-
         }
     }
 
@@ -251,22 +237,4 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         isStop = true;
     }
 
-    class SeekBarThread implements Runnable {
-
-        @Override
-        public void run() {
-            while (mediaPlayer != null && isStop == false) {
-                // 将SeekBar位置设置到当前播放位置
-                handler.sendEmptyMessage(mediaPlayer.getCurrentPosition());
-                try {
-                    // 每100毫秒更新一次位置
-                    Thread.sleep(80);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        }
-    }
 }

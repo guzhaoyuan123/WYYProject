@@ -1,8 +1,9 @@
 package com.example.url.meirituijian;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TracksBean {
+public class TracksBean  implements Serializable {
     /**
      * name : 麻雀
      * id : 1407551413

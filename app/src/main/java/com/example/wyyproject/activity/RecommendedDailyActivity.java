@@ -18,10 +18,12 @@ import com.example.url.meirituijian.TracksBean;
 import com.example.wyyproject.R;
 import com.example.wyyproject.adapter.EveryDayTuiJianAdapter;
 import com.example.wyyproject.util.AppBarStateChangeListener;
+import com.example.wyyproject.util.Common;
 import com.example.wyyproject.util.Http;
 import com.google.android.material.appbar.AppBarLayout;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,36 +47,6 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
             public void onStateChanged(AppBarLayout appBarLayout, State state) {
-                if( state == State.EXPANDED ) {
-                    //展开状态
-                    toolbar.setNavigationIcon(R.mipmap.return2);
-                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            RecommendedDailyActivity.this.finish();
-                        }
-                    });
-
-                }else if(state == State.COLLAPSED){
-                    //折叠状态
-                    toolbar.setNavigationIcon(R.mipmap.return2);
-                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            RecommendedDailyActivity.this.finish();
-                        }
-                    });
-
-                }else {
-                    //中间状态
-                    toolbar.setNavigationIcon(R.mipmap.return2);
-                    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            RecommendedDailyActivity.this.finish();
-                        }
-                    });
-                }
             }
         });
 
@@ -108,18 +80,24 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         }).start();
     }
 
-    private void showXin(List<TracksBean> beans) {
+    private void showXin( List<TracksBean> beans) {
         EveryDayTuiJianAdapter adapter = new EveryDayTuiJianAdapter(this, beans);
         listView.setAdapter(adapter);
         fixListViewHeight(listView);
+        Common.musicList=beans;
+        Log.e("<<<<<<<<<<<<<<<<<",""+Common.musicList.size());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                 Intent intent = new Intent(RecommendedDailyActivity.this,MusicActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("cls", (Serializable) beans);
                 intent.putExtra("musicZuozhe",beans.get(i).getAr().get(0).getName());
                 intent.putExtra("musicPicture",beans.get(i).getAl().getPicUrl());
                 intent.putExtra("musicName",beans.get(i).getName());
                 intent.putExtra("musicId",beans.get(i).getId());
+                intent.putExtra("postion",i);
                 startActivity(intent);
             }
         });
