@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/toplist_img_tuijian"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:riv_corner_radius="10dp"
+            android:src="@mipmap/xinge"/>
+
+        <TextView
+            android:id="@+id/toplist_tx_tuijian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="每周更新"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="75dp"
+            android:textColor="#ffffff"/>
+
+        <TextView
+            android:id="@+id/toplist_tx_tuijian2"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="云音乐说唱榜"
+            android:layout_below="@+id/toplist_img"
+            android:gravity="center"
+            android:layout_marginTop="105dp"
+            android:textSize="16dp"
+            android:lines="1"
+            android:ellipsize="end"
+            android:textColor="#333333"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
