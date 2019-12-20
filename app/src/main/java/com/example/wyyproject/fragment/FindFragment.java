@@ -24,6 +24,8 @@ import com.example.url.xindie.AlbumsBean;
 import com.example.url.xindie.TheNewDisc;
 import com.example.wyyproject.R;
 import com.example.wyyproject.activity.RecommendedDailyActivity;
+import com.example.wyyproject.activity.SongListActivity;
+import com.example.wyyproject.activity.TopListActivity;
 import com.example.wyyproject.activity.VillageOfSelectedActivity;
 import com.example.wyyproject.adapter.FindTJGDRecyclerviewAdapter;
 import com.example.wyyproject.adapter.FindXDRecyclerviewAdapter;
@@ -55,7 +57,17 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private Button btn_find_xin;
     private SwipeRefreshLayout refreshLayout;
 
-    private ImageView imageView;
+    private ImageView imageViewMeiri;
+    private ImageView imageViewGedan;
+    private ImageView imageViewPaihangbang;
+    private ImageView imageViewDiantai;
+    private ImageView imageViewZhibo;
+
+    private TextView txMeiri;
+    private TextView txGedan;
+    private TextView txPaihangbang;
+    private TextView txDiantai;
+    private TextView txZhibo;
 
     public FindFragment() {
 
@@ -80,6 +92,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_find, container, false);
+//       实例化控件
         bannerText = view.findViewById(R.id.banner_text);
         viewpager = view.findViewById(R.id.viewpager);
         lydots = view.findViewById(R.id.ly_dots);
@@ -89,7 +102,17 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         btn_find_xin = view.findViewById(R.id.btn_find_xin);
         find_recyclerView_yuncunjingxuan = view.findViewById(R.id.find_recyclerView_yuncunjingxuan);
 
-        imageView=view.findViewById(R.id.img_find_meirituijian);
+        imageViewMeiri=view.findViewById(R.id.img_find_meirituijian);
+        imageViewGedan=view.findViewById(R.id.img_find_gedan);
+        imageViewPaihangbang=view.findViewById(R.id.img_find_paihangbang);
+        imageViewDiantai=view.findViewById(R.id.img_find_diantai);
+        imageViewZhibo=view.findViewById(R.id.img_find_zhibo);
+
+        txMeiri=view.findViewById(R.id.tx_find_meirituijian);
+        txGedan=view.findViewById(R.id.tx_find_gedan);
+        txPaihangbang=view.findViewById(R.id.tx_find_paihangbang);
+        txDiantai=view.findViewById(R.id.tx_find_diantai);
+        txZhibo=view.findViewById(R.id.tx_find_zhibo);
 
 //        下拉刷新
         refreshLayout.setOnRefreshListener(this);
@@ -112,7 +135,17 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         textView1.setOnClickListener(this);
         textView2.setOnClickListener(this);
 
-        imageView.setOnClickListener(this);
+        imageViewMeiri.setOnClickListener(this);
+        imageViewGedan.setOnClickListener(this);
+        imageViewPaihangbang.setOnClickListener(this);
+        imageViewDiantai.setOnClickListener(this);
+        imageViewZhibo.setOnClickListener(this);
+
+        txMeiri.setOnClickListener(this);
+        txGedan.setOnClickListener(this);
+        txPaihangbang.setOnClickListener(this);
+        txDiantai.setOnClickListener(this);
+        txZhibo.setOnClickListener(this);
         return view;
     }
 
@@ -405,33 +438,65 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.tx_find_xindie) {
-            stagger2();
-            float selectedSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics());
-            textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSize);
-            textView1.setTextColor(getResources().getColor(R.color.selectCheck2));
+        Intent intent;
+        switch (view.getId()){
+            case R.id.img_find_meirituijian:
+                intent = new Intent(getContext(), RecommendedDailyActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.img_find_gedan:
+                intent = new Intent(getContext(), SongListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.img_find_paihangbang:
+                intent = new Intent(getContext(), TopListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.img_find_diantai:
+                break;
+            case R.id.img_find_zhibo:
+                break;
+            case R.id.tx_find_meirituijian:
+                intent = new Intent(getContext(), RecommendedDailyActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tx_find_gedan:
+                intent = new Intent(getContext(), SongListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tx_find_paihangbang:
+                intent = new Intent(getContext(), TopListActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tx_find_diantai:
+                break;
+            case R.id.tx_find_zhibo:
+                break;
+            case R.id.tx_find_xindie:
+                stagger2();
+                float selectedSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics());
+                textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSize);
+                textView1.setTextColor(getResources().getColor(R.color.selectCheck2));
 
-            float selectedSiz2 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 14, getResources().getDisplayMetrics());
-            textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSiz2);
-            textView2.setTextColor(getResources().getColor(R.color.selectCheck));
-            Toast.makeText(getContext(), "点击了新碟", Toast.LENGTH_LONG).show();
-            btn_find_xin.setText("更多新碟");
-        }
-        if (view.getId() == R.id.tx_find_xinge) {
-            stagger3();
-            float selectedSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics());
-            textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSize);
-            textView2.setTextColor(getResources().getColor(R.color.selectCheck2));
+                float selectedSiz2 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 14, getResources().getDisplayMetrics());
+                textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSiz2);
+                textView2.setTextColor(getResources().getColor(R.color.selectCheck));
+                Toast.makeText(getContext(), "点击了新碟", Toast.LENGTH_LONG).show();
+                btn_find_xin.setText("更多新碟");
+                break;
+            case R.id.tx_find_xinge:
+                stagger3();
+                float selectedSize3 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics());
+                textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSize3);
+                textView2.setTextColor(getResources().getColor(R.color.selectCheck2));
 
-            float selectedSiz2 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 14, getResources().getDisplayMetrics());
-            textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSiz2);
-            textView1.setTextColor(getResources().getColor(R.color.selectCheck));
-            Toast.makeText(getContext(), "点击了新歌", Toast.LENGTH_LONG).show();
-            btn_find_xin.setText("新歌推荐");
-        }
-        if (view.getId() == R.id.img_find_meirituijian) {
-           Intent intent = new Intent(getContext(), RecommendedDailyActivity.class);
-           startActivity(intent);
+                float selectedSiz4 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 14, getResources().getDisplayMetrics());
+                textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSiz4);
+                textView1.setTextColor(getResources().getColor(R.color.selectCheck));
+                Toast.makeText(getContext(), "点击了新歌", Toast.LENGTH_LONG).show();
+                btn_find_xin.setText("新歌推荐");
+                break;
+
         }
     }
 }

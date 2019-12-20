@@ -21,29 +21,29 @@ public class DataBean {
      * encodeType : mp3
      */
 
-    private int id;
+    private long id;
     private String url;
-    private int br;
-    private int size;
+    private long br;
+    private long size;
     private String md5;
-    private int code;
-    private int expi;
+    private long code;
+    private long expi;
     private String type;
-    private int gain;
-    private int fee;
+    private long gain;
+    private long fee;
     private Object uf;
-    private int payed;
-    private int flag;
+    private long payed;
+    private long flag;
     private boolean canExtend;
     private Object freeTrialInfo;
     private String level;
     private String encodeType;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -55,19 +55,19 @@ public class DataBean {
         this.url = url;
     }
 
-    public int getBr() {
+    public long getBr() {
         return br;
     }
 
-    public void setBr(int br) {
+    public void setBr(long br) {
         this.br = br;
     }
 
-    public int getSize() {
+    public long getSize() {
         return size;
     }
 
-    public void setSize(int size) {
+    public void setSize(long size) {
         this.size = size;
     }
 
@@ -79,19 +79,19 @@ public class DataBean {
         this.md5 = md5;
     }
 
-    public int getCode() {
+    public long getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(long code) {
         this.code = code;
     }
 
-    public int getExpi() {
+    public long getExpi() {
         return expi;
     }
 
-    public void setExpi(int expi) {
+    public void setExpi(long expi) {
         this.expi = expi;
     }
 
@@ -103,19 +103,19 @@ public class DataBean {
         this.type = type;
     }
 
-    public int getGain() {
+    public long getGain() {
         return gain;
     }
 
-    public void setGain(int gain) {
+    public void setGain(long gain) {
         this.gain = gain;
     }
 
-    public int getFee() {
+    public long getFee() {
         return fee;
     }
 
-    public void setFee(int fee) {
+    public void setFee(long fee) {
         this.fee = fee;
     }
 
@@ -127,19 +127,19 @@ public class DataBean {
         this.uf = uf;
     }
 
-    public int getPayed() {
+    public long getPayed() {
         return payed;
     }
 
-    public void setPayed(int payed) {
+    public void setPayed(long payed) {
         this.payed = payed;
     }
 
-    public int getFlag() {
+    public long getFlag() {
         return flag;
     }
 
-    public void setFlag(int flag) {
+    public void setFlag(long flag) {
         this.flag = flag;
     }
 

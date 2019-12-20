@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MusicActivity"></activity>
+        <activity android:name=".activity.TopListActivity"></activity>
+        <activity android:name=".activity.SongListActivity" />
+        <activity android:name=".activity.MusicActivity" />
         <activity android:name=".activity.TroubleShootingActivity" />
         <activity android:name=".activity.RecommendedDailyActivity" />
         <activity android:name=".activity.NavigationActivity" />
@@ -37,7 +39,7 @@
         <activity
             android:name=".activity.VillageOfSelectedActivity"
             android:launchMode="singleInstance" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

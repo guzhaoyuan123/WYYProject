@@ -68,23 +68,16 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_music);
 
         Intent intent = getIntent();
-        String id = intent.getStringExtra("musicId");
-//        String name = intent.getStringExtra("musicName");
-//        String zuozhe = intent.getStringExtra("musicZuozhe");
-//        String picture = intent.getStringExtra("musicPicture");
         position=intent.getIntExtra("postion",0);
 
 
 
         Link();
-        initView(id,position);
+        initView(position);
 //
 //        Glide.with(this).load(picture).into(discsmap);
         mediaPlayer = new MediaPlayer();
-        backIv.setOnClickListener(this);
-        nextIv.setOnClickListener(this);
-        pauseIv.setOnClickListener(this);
-        imgMusicFenXiang.setOnClickListener(this);
+
 
         jindutiaoSb.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -106,20 +99,24 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    private void initView(String id,int position) {
+    private void initView(int position) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    String json = Http.get("http://10.0.2.2:3000/song/url?id=" + id + "");
+                    String json = Http.get("http://10.0.2.2:3000/song/url?id=" + Common.musicList.get(position).getId() + "");
                     Log.e("????????????", "" + json);
                     Music music = JSON.parseObject(json, Music.class);
                     List<DataBean> datasBeans = music.getData();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            if (datasBeans.get(0).getUrl() ==null){
+                                initView(position-1);
+                            }else {
+                                play(datasBeans.get(0).getUrl(), datasBeans.get(0).getSize(),position);
+                            }
 
-                            play(datasBeans.get(0).getUrl(), datasBeans.get(0).getSize(),position);//歌曲播放及一系列操作方法
                         }
                     });
                 } catch (IOException e) {
@@ -130,11 +127,16 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    private void play(String path, int length,int position) {
+    private void play(String path, long length,int position) {
         imgMusicGeMinga.setText(Common.musicList.get(position).getName());
         imgMusicZuoZhe.setText(Common.musicList.get(position).getAr().get(0).getName());
         Glide.with(this).load(Common.musicList.get(position).getAl().getPicUrl()).into(discsmap);
 
+        backIv.setOnClickListener(this);
+        nextIv.setOnClickListener(this);
+        pauseIv.setOnClickListener(this);
+        imgMusicFenXiang.setOnClickListener(this);
+        imgMusicFanhui.setOnClickListener(this);
         mediaPlayer.reset();
         try {
             mediaPlayer.setDataSource(path);
@@ -165,9 +167,9 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
                 }
             }
         }).start();
-        jindutiaoSb.setMax(length);
+        jindutiaoSb.setMax((int) length);
     }
-    private String formatTime(int length) {
+    private String formatTime(long length) {
         Date date = new Date(length);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("m:ss");
         String TotalTime = simpleDateFormat.format(date);
@@ -196,26 +198,21 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
                 MusicActivity.this.finish();
                 break;
             case R.id.listen_back_img:
-                --position;
-                Log.e("=====88888==",""+position);
-
+                position--;
                 if (position == -1) {
                     position = Common.musicList.size()-1;
-                    initView(Common.musicList.get(position).getId(),position);
-                    Log.e(">>>>>>>>>>>>>","kkkkkkkk==="+position);
-                    break;
                 }
-                initView(Common.musicList.get(position).getId(),position);
-
+                initView(position);
+                pauseIv.setImageResource(R.mipmap.starplay);
                 break;
             case R.id.listen_next_img:
-                ++position;
+                position++;
                 if (position == Common.musicList.size()) {
                     position = 0;
                 }
-                initView(Common.musicList.get(position).getId(),position);
+                initView(position);
+                pauseIv.setImageResource(R.mipmap.starplay);
             case R.id.listen_pause1_img:
-
                 if (mediaPlayer.isPlaying()) {
                     mediaPlayer.pause();
                     animator.pause();

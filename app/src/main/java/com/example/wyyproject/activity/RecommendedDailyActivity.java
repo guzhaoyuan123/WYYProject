@@ -23,7 +23,6 @@ import com.example.wyyproject.util.Http;
 import com.google.android.material.appbar.AppBarLayout;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +50,11 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         });
 
         setSupportActionBar(toolbar);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                finish();
+            }
+        });
         listView=findViewById(R.id.listVIew);
         initView();
 
@@ -89,14 +93,7 @@ public class RecommendedDailyActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 Intent intent = new Intent(RecommendedDailyActivity.this,MusicActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("cls", (Serializable) beans);
-                intent.putExtra("musicZuozhe",beans.get(i).getAr().get(0).getName());
-                intent.putExtra("musicPicture",beans.get(i).getAl().getPicUrl());
-                intent.putExtra("musicName",beans.get(i).getName());
-                intent.putExtra("musicId",beans.get(i).getId());
                 intent.putExtra("postion",i);
                 startActivity(intent);
             }
