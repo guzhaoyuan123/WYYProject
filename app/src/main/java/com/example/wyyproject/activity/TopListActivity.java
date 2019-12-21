@@ -1,9 +1,9 @@
 package com.example.wyyproject.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.url.guanfangbandan.GuanFangBangDanApi;
@@ -11,6 +11,7 @@ import com.example.url.guanfangbandan.ListBean;
 import com.example.wyyproject.R;
 import com.example.wyyproject.adapter.TopListGuanFangRecyclerviewAdapter;
 import com.example.wyyproject.adapter.TopListTuijianRecyclerviewAdapter;
+import com.example.wyyproject.list.MusicTopActivity;
 import com.example.wyyproject.util.Http;
 
 import java.io.IOException;
@@ -90,9 +91,10 @@ public class TopListActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new TopListGuanFangRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-//                Intent intent = new Intent(TopListActivity.this,MusicActivity.class);
-//                intent.putExtra("postion",position);
-//                startActivity(intent);
+                Intent intent = new Intent(TopListActivity.this, MusicTopActivity.class);
+                intent.putExtra("paihangbangId",result.get(position).getId());
+                intent.putExtra("paihangbangName",result.get(position).getName());
+                startActivity(intent);
             }
         });
     }
@@ -139,7 +141,10 @@ public class TopListActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new TopListTuijianRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Toast.makeText(TopListActivity.this, "haole", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(TopListActivity.this,MusicTopActivity.class);
+                intent.putExtra("paihangbangId",result.get(position).getId());
+                intent.putExtra("paihangbangName",result.get(position).getName());
+                startActivity(intent);
             }
         });
     }
@@ -184,7 +189,10 @@ public class TopListActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new TopListTuijianRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Toast.makeText(TopListActivity.this, "haole", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(TopListActivity.this,MusicTopActivity.class);
+                intent.putExtra("paihangbangId",result.get(position).getId());
+                intent.putExtra("paihangbangName",result.get(position).getName());
+                startActivity(intent);
             }
         });
     }
@@ -227,7 +235,10 @@ public class TopListActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new TopListTuijianRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Toast.makeText(TopListActivity.this, "haole", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(TopListActivity.this,MusicTopActivity.class);
+                intent.putExtra("paihangbangId",result.get(position).getId());
+                intent.putExtra("paihangbangName",result.get(position).getName());
+                startActivity(intent);
             }
         });
     }

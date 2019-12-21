@@ -62,12 +62,7 @@ public class TopListGuanFangRecyclerviewAdapter extends RecyclerView.Adapter<Top
         List<TracksBean> tracksBean = resultBeans.get(i).getTracks();
         Log.e("LLLLLLLLLLLLLLLLL",""+tracksBean.size());
         if (tracksBean.size()==0){
-            //        holder.toplistTxGeming1.setText(tracksBean.get(0).getFirst());
-//        holder.toplistTxZuozhe1.setText(resultBeans.get(i).getTracks().get(0).getSecond());
-//        holder.toplistTxeming2.setText(resultBeans.get(i).getTracks().get(1).getFirst());
-//        holder.toplistTxZuozhe2.setText(resultBeans.get(i).getTracks().get(1).getSecond());
-//        holder.toplistTxeming3.setText(resultBeans.get(i).getTracks().get(2).getFirst());
-//        holder.toplistTxZuozhe3.setText(resultBeans.get(i).getTracks().get(2).getSecond());
+
         }else {
                     holder.toplistTxGeming1.setText(tracksBean.get(0).getFirst());
                     holder.toplistTxZuozhe1.setText(resultBeans.get(i).getTracks().get(0).getSecond());

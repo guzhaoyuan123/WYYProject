@@ -23,7 +23,8 @@ import com.example.url.tuijiangedan.ResultBean;
 import com.example.url.xindie.AlbumsBean;
 import com.example.url.xindie.TheNewDisc;
 import com.example.wyyproject.R;
-import com.example.wyyproject.activity.RecommendedDailyActivity;
+import com.example.wyyproject.list.FindTuijianMusicActivity;
+import com.example.wyyproject.list.RecommendedDailyActivity;
 import com.example.wyyproject.activity.SongListActivity;
 import com.example.wyyproject.activity.TopListActivity;
 import com.example.wyyproject.activity.VillageOfSelectedActivity;
@@ -181,8 +182,6 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private void showTuiJianGeDan(List<ResultBean> result) {
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         find_recyclerView_tuijianedan.setLayoutManager(layoutManager);
-
-
         // recyclerView.setLayoutManager(new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false));
 
         FindTJGDRecyclerviewAdapter adapter = new FindTJGDRecyclerviewAdapter(getContext(), result);
@@ -191,7 +190,11 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         adapter.setOnItemClickListener(new FindTJGDRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Toast.makeText(getContext(), "haole", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), FindTuijianMusicActivity.class);
+                Log.e(">>>>>>",""+result.get(position).getId());
+                intent.putExtra("paihangbangId2",result.get(position).getId());
+                intent.putExtra("paihangbangName2",result.get(position).getName());
+                startActivity(intent);
             }
         });
     }

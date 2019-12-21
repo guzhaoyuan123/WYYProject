@@ -1,9 +1,9 @@
-package com.example.wyyproject.activity;
+package com.example.wyyproject.list;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,40 +12,46 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
-import com.example.url.meirituijian.EveryDaygeApi;
-import com.example.url.meirituijian.PlaylistBean;
-import com.example.url.meirituijian.TracksBean;
+import com.example.url.paihangbang.PaiHangBangApi;
+import com.example.url.paihangbang.TracksBean;
 import com.example.wyyproject.R;
-import com.example.wyyproject.adapter.EveryDayTuiJianAdapter;
+import com.example.wyyproject.changpian.PaiHangBangMusicActivity;
+import com.example.wyyproject.activity.TroubleShootingActivity;
+import com.example.wyyproject.adapter.PaiHangBangAdapter;
 import com.example.wyyproject.util.AppBarStateChangeListener;
-import com.example.wyyproject.util.Common;
 import com.example.wyyproject.util.Http;
+import com.example.wyyproject.util.PaiHangBangCommon;
 import com.google.android.material.appbar.AppBarLayout;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class RecommendedDailyActivity extends AppCompatActivity {
+public class MusicTopActivity extends AppCompatActivity {
 
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private ListView listView;
-    private Menu id;
 
-    private List<String> titles = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recommended_daily);
-        toolbar = findViewById(R.id.toolbar);
-        appBarLayout = findViewById(R.id.appbar);
+        setContentView(R.layout.activity_music_top);
+
+        Intent intent = getIntent();
+        long id = intent.getLongExtra("paihangbangId",0);
+        Log.e(">>>>>>",""+id);
+        String name=intent.getStringExtra("paihangbangName");
+
+        toolbar = findViewById(R.id.toolbar2);
+        toolbar.setTitle(name);
+        toolbar.setTitleTextColor(Color.WHITE);
+        appBarLayout = findViewById(R.id.appbar2);
         appBarLayout.addOnOffsetChangedListener(new AppBarStateChangeListener() {
             @Override
-            public void onStateChanged(AppBarLayout appBarLayout, State state) {
+            public void onStateChanged(AppBarLayout appBarLayout, AppBarStateChangeListener.State state) {
             }
         });
 
@@ -55,22 +61,20 @@ public class RecommendedDailyActivity extends AppCompatActivity {
                 finish();
             }
         });
-        listView=findViewById(R.id.listVIew);
-        initView();
+        listView=findViewById(R.id.listVIew2);
+        initView(id);
 
     }
     //加载新歌
-    private void initView() {
+    private void initView(long id) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    String json = Http.get("http://10.0.2.2:3000/top/list?idx=1");
-                    Log.e(">>>>>>",""+json);
-                    EveryDaygeApi api = JSON.parseObject(json, EveryDaygeApi.class);
-
-                    PlaylistBean beans = api.getPlaylist();
-                    List<TracksBean> tracksBeans = beans.getTracks();
+                    String json = Http.get("http://10.0.2.2:3000/playlist/detail?id="+id+"");
+                    Log.e(">>>>>>",""+json+id);
+                    PaiHangBangApi api = JSON.parseObject(json, PaiHangBangApi.class);
+                    List<TracksBean> tracksBeans = api.getPlaylist().getTracks();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -85,15 +89,15 @@ public class RecommendedDailyActivity extends AppCompatActivity {
     }
 
     private void showXin( List<TracksBean> beans) {
-        EveryDayTuiJianAdapter adapter = new EveryDayTuiJianAdapter(this, beans);
+        PaiHangBangAdapter adapter = new PaiHangBangAdapter(this, beans);
         listView.setAdapter(adapter);
         fixListViewHeight(listView);
-        Common.musicList=beans;
-        Log.e("<<<<<<<<<<<<<<<<<",""+Common.musicList.size());
+        PaiHangBangCommon.musicList=beans;
+        Log.e("**************",""+PaiHangBangCommon.musicList.size());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(RecommendedDailyActivity.this,MusicActivity.class);
+                Intent intent = new Intent(MusicTopActivity.this, PaiHangBangMusicActivity.class);
                 intent.putExtra("postion",i);
                 startActivity(intent);
             }
@@ -137,7 +141,7 @@ public class RecommendedDailyActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.wenti:
-                Intent intent = new Intent(RecommendedDailyActivity.this,TroubleShootingActivity.class);
+                Intent intent = new Intent(MusicTopActivity.this, TroubleShootingActivity.class);
                 startActivity(intent);
                 break;
         }

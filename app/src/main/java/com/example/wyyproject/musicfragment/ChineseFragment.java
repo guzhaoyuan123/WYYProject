@@ -1,16 +1,17 @@
 package com.example.wyyproject.musicfragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.url.tuijiangedan.RecommendThePlayList;
 import com.example.url.tuijiangedan.ResultBean;
 import com.example.wyyproject.R;
 import com.example.wyyproject.adapter.FindTJGDRecyclerviewAdapter;
+import com.example.wyyproject.list.ChineseGedanActivity;
 import com.example.wyyproject.util.Http;
 
 import java.io.IOException;
@@ -85,7 +86,10 @@ public class ChineseFragment extends Fragment {
         adapter.setOnItemClickListener(new FindTJGDRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Toast.makeText(getContext(), "haole", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getContext(), ChineseGedanActivity.class);
+                intent.putExtra("paihangbangId",result.get(position).getId());
+                intent.putExtra("paihangbangName",result.get(position).getName());
+                startActivity(intent);
             }
         });
     }
