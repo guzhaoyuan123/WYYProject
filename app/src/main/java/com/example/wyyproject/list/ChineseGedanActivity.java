@@ -12,8 +12,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSON;
-import com.example.url.paihangbang2.FindTuiJianListApi;
-import com.example.url.paihangbang2.TracksBean;
+import com.example.url.paihangbang.PaiHangBangApi;
+import com.example.url.paihangbang.TracksBean;
 import com.example.wyyproject.R;
 import com.example.wyyproject.activity.TroubleShootingActivity;
 import com.example.wyyproject.adapter.FindTuijianListAdapter;
@@ -72,7 +72,7 @@ public class ChineseGedanActivity extends AppCompatActivity {
                 try {
                     String json = Http.get("http://10.0.2.2:3000/playlist/detail?id="+id+"");
                     Log.e(">>>>>>",""+id);
-                    FindTuiJianListApi api = JSON.parseObject(json, FindTuiJianListApi.class);
+                    PaiHangBangApi api = JSON.parseObject(json, PaiHangBangApi.class);
                     List<TracksBean> tracksBeans = api.getPlaylist().getTracks();
                     runOnUiThread(new Runnable() {
                         @Override

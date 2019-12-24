@@ -1,5 +1,6 @@
 package com.example.wyyproject.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -39,6 +40,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -66,6 +68,8 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     ImageView imgNavigationTuichu;
     @BindView(R.id.nav_view)
     NavigationView navView;
+    @BindView(R.id.main_search)
+    ImageView mainSearch;
 
     private RoundedImageView imageView;
 
@@ -86,14 +90,15 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     private NavigationView navigationView;
 
     private List<String> titles = new ArrayList<>();
-    private List<Integer> heads= new ArrayList<>();
+    private List<Integer> heads = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
 
-        imageView=findViewById(R.id.img_navigation_touxiang);
+        imageView = findViewById(R.id.img_navigation_touxiang);
         toolbar = findViewById(R.id.tool_barT);
         setSupportActionBar(toolbar);
 
@@ -111,7 +116,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.fl_monetary_replace);
-        refreshLayout=findViewById(R.id.refreshLayout);
+        refreshLayout = findViewById(R.id.refreshLayout);
 
         initView();
 
@@ -120,7 +125,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     }
 
     private void initView() {
-        titles= new ArrayList<>();
+        titles = new ArrayList<>();
         titles.add("演出");
         titles.add("商城");
         titles.add("附近的人");
@@ -136,9 +141,9 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         titles.add("优惠券");
         titles.add("青少年模式");
 
-        heads= new ArrayList<>();
+        heads = new ArrayList<>();
         heads.add(R.mipmap.cebianlan_yanchu);
-        heads.add(R.mipmap.cebianlan_shangcheng );
+        heads.add(R.mipmap.cebianlan_shangcheng);
         heads.add(R.mipmap.cebianlan_fujin);
         heads.add(R.mipmap.cebianlan_youxi);
         heads.add(R.mipmap.cebianlan_koudai);
@@ -151,9 +156,9 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         heads.add(R.mipmap.cebianlan_zaixian);
         heads.add(R.mipmap.cebianlan_youhuiquan);
         heads.add(R.mipmap.cebianlan_qinshaonian);
-        Log.e("","??????????"+titles.size()+"?????????????????"+heads.size());
+        Log.e("", "??????????" + titles.size() + "?????????????????" + heads.size());
 
-        NavigationListAdapter adapter = new NavigationListAdapter(this,titles,heads);
+        NavigationListAdapter adapter = new NavigationListAdapter(this, titles, heads);
         NavigationListview.setAdapter(adapter);
 
 
@@ -181,7 +186,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
-
 
 
     private void initPager() {
@@ -264,5 +268,11 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         } else {
             super.onBackPressed();
         }
+    }
+
+    @OnClick(R.id.main_search)
+    public void onViewClicked() {
+        Intent intent = new Intent(NavigationActivity.this, SearchActivity.class);
+        startActivity(intent);
     }
 }

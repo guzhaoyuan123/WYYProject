@@ -1,17 +1,16 @@
 package com.example.wyyproject.musicfragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.example.url.guanfang.GuanFangApi;
 import com.example.url.guanfang.PlaylistsBean;
 import com.example.wyyproject.R;
-import com.example.wyyproject.list.FindTuijianMusicActivity;
 import com.example.wyyproject.adapter.FindGDGCRecyclerviewAdapter;
 import com.example.wyyproject.util.Http;
 
@@ -80,10 +79,7 @@ public class FashionFragment extends Fragment {
         adapter.setOnItemClickListener(new FindGDGCRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-                Intent intent = new Intent(getContext(), FindTuijianMusicActivity.class);
-                intent.putExtra("paihangbangId",result.get(position).getId());
-                intent.putExtra("paihangbangName",result.get(position).getName());
-                startActivity(intent);
+                Toast.makeText(getContext(),"你真有眼光！！！",Toast.LENGTH_LONG).show();
             }
         });
     }
