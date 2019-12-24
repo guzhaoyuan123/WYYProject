@@ -36,7 +36,7 @@ public class BeNamedActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Intent intent= getIntent();
-        mima=intent.getStringExtra("getMima");
+        mima=intent.getStringExtra("getMima");//得到SignInActivity中传来的值
         shouji=intent.getStringExtra("getShoujihaoma");
         yanzhengma=intent.getStringExtra("getYanzhengma");
     }
@@ -53,18 +53,19 @@ public class BeNamedActivity extends AppCompatActivity {
         }
     }
 
-//    /register/cellphone?phone=13xxx&password=xxxxx&captcha=1234&nickname=binary1345
+//    注册
     private void zhuce() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
+                     // 将手机号码，验证码，密码，名称填入接口中请求。
                     String  json2 = Http.get("http://10.0.2.2:3000/register/cellphone?phone="+shouji+"&password="+mima+"&captcha="+yanzhengma+"&nickname="+etBeNamedMima.getText().toString()+"");
                     ZhuCeApi zhuCeApi = JSON.parseObject(json2,ZhuCeApi.class);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if (zhuCeApi.getCode()==505){
+                            if (zhuCeApi.getCode()==505){//如果不行，结果会是名称已经存在，这里直接自己填入一个名字，再次请求
                                 String s=etBeNamedMima.getText().toString()+"kionajgizl_ljia";
                                 new Thread(new Runnable() {
                                     @Override

@@ -26,7 +26,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
     Button btnPhoneloginNext;
     @BindView(R.id.img_loginphone_fanhui)
     ImageView imgLoginphoneFanhui;
+    //手机号码的正则表达式
     public static final String REGEX_MOBILE = "^1[3|4|5|8|9][0-9]\\d{8}$";
+
 
 
     @Override
@@ -42,9 +44,9 @@ public class PhoneLoginActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_phonelogin_next:
-                if (isMobile(etPhoneloginPhone.getText().toString())) {
+                if (isMobile(etPhoneloginPhone.getText().toString())) {//判断得到的手机号码是否通过
                     Intent intent = new Intent(PhoneLoginActivity.this, CodeActivity.class);
-                    intent.putExtra("phonename", etPhoneloginPhone.getText().toString());
+                    intent.putExtra("phonename", etPhoneloginPhone.getText().toString());//将手机号码传到CodeActivity中
                     startActivity(intent);
                 } else {
                     Toast.makeText(PhoneLoginActivity.this, "请输入11位数字的手机号", Toast.LENGTH_SHORT).show();
@@ -56,6 +58,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
         }
     }
 
+//    判断是否是手机号码
     public static boolean isMobile(String mobile) {
         return Pattern.matches(REGEX_MOBILE, mobile);
     }

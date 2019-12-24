@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.wyyproject.R;
 import com.example.wyyproject.adapter.MainFragmentAdapter;
@@ -29,7 +27,6 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -42,7 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class NavigationActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationActivity extends AppCompatActivity{
 
     @BindView(R.id.img_navigation_touxiang)
     RoundedImageView imgNavigationTouxiang;
@@ -72,23 +69,13 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     ImageView mainSearch;
 
     private RoundedImageView imageView;
-
     private AppBarLayout appBarLayout;
     private SwipeRefreshLayout refreshLayout;
-    private Fragment blank;
-    private Fragment blank1;
-    private Fragment blank2;
-    private Fragment blank3;
-    private Fragment testblank;
-
     private TabLayout tabLayout;
-
     private ViewPager viewPager;
-
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-
     private List<String> titles = new ArrayList<>();
     private List<Integer> heads = new ArrayList<>();
 
@@ -97,30 +84,26 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
         ButterKnife.bind(this);
-
-        imageView = findViewById(R.id.img_navigation_touxiang);
+         //main中的控件
         toolbar = findViewById(R.id.tool_barT);
+        tabLayout = findViewById(R.id.tab_layout);
+        viewPager = findViewById(R.id.fl_monetary_replace);
+        refreshLayout = findViewById(R.id.refreshLayout);
+        navigationView = findViewById(R.id.nav_view);
         setSupportActionBar(toolbar);
 
-        //        难难难
+        imageView = findViewById(R.id.img_navigation_touxiang);
+
+        //  侧边栏实现
         drawerLayout = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.drawer_open, R.string.drawer_close);
         toggle.syncState();
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-//        难难难
 
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        tabLayout = findViewById(R.id.tab_layout);
-        viewPager = findViewById(R.id.fl_monetary_replace);
-        refreshLayout = findViewById(R.id.refreshLayout);
-
-        initView();
-
-        initPager();
+        initView();//填充侧边栏中listView
+        initPager();//填充MainAcitity中的控件
 
     }
 
@@ -156,14 +139,13 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         heads.add(R.mipmap.cebianlan_zaixian);
         heads.add(R.mipmap.cebianlan_youhuiquan);
         heads.add(R.mipmap.cebianlan_qinshaonian);
-        Log.e("", "??????????" + titles.size() + "?????????????????" + heads.size());
 
         NavigationListAdapter adapter = new NavigationListAdapter(this, titles, heads);
         NavigationListview.setAdapter(adapter);
 
-
-        fixListViewHeight(NavigationListview);
+        fixListViewHeight(NavigationListview);//解决NestedScrollView中放ListView的冲突
     }
+
 
     public void fixListViewHeight(ListView listView) {
         // 如果没有设置数据适配器，则ListView没有子项，返回。
@@ -188,6 +170,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
     }
 
 
+//    main中的控件填充
     private void initPager() {
         List<String> titles = new ArrayList<>();
         titles.add("我的");
@@ -213,6 +196,7 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+//                选择到的Tablayout的子项，则会字体变大，颜色变黑效果
                 TextView textView = new TextView(NavigationActivity.this);
                 float selectedSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 22, getResources().getDisplayMetrics());
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSize);
@@ -233,32 +217,6 @@ public class NavigationActivity extends AppCompatActivity implements NavigationV
             }
         });
 
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.nav_camera:
-                Toast.makeText(NavigationActivity.this, "无敌帮帮糖", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.nav_gallery:
-                Toast.makeText(NavigationActivity.this, "无敌帮帮糖2", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.nav_manage:
-                Toast.makeText(NavigationActivity.this, "无敌帮帮糖3", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.nav_send:
-                Toast.makeText(NavigationActivity.this, "无敌帮帮糖4", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.nav_share:
-                Toast.makeText(NavigationActivity.this, "无敌帮帮糖5", Toast.LENGTH_LONG).show();
-                break;
-            default:
-                break;
-        }
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
     }
 
     @Override

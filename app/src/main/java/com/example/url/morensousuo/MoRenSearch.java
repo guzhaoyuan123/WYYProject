@@ -1,5 +1,6 @@
 package com.example.url.morensousuo;
 
+//查询歌名的请求类结果
 public class MoRenSearch {
 
     /**

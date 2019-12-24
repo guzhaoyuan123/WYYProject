@@ -50,16 +50,17 @@ public class LoginActivity extends AppCompatActivity {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_login_phone:
-                if (cxApply.isChecked()) {
+                if (cxApply.isChecked()) {//判断单选框是否勾选
                     Intent intent = new Intent(LoginActivity.this, PhoneLoginActivity.class);
                     startActivity(intent);
+                    //进场动画
                     overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);
                 } else {
                     Toast.makeText(this, "请勾选同意《用户协议》《隐私政策》《儿童隐私政策》", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.btn_login_log:
-                if (cxApply.isChecked()) {
+                if (cxApply.isChecked()) {//判断单选框是否勾选
                     Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
                     startActivity(intent);
                     overridePendingTransition(R.anim.zoom_in, R.anim.zoom_out);

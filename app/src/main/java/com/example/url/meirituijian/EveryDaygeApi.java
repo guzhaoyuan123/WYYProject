@@ -2,6 +2,8 @@ package com.example.url.meirituijian;
 
 import java.util.List;
 
+
+//每日推荐中的请求类结果
 public class EveryDaygeApi {
 
 

@@ -1,5 +1,6 @@
 package com.example.url.zhuce;
 
+//注册的请求类结果
 public class ZhuCeApi {
 
     /**

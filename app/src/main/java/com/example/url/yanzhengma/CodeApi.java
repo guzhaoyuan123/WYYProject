@@ -1,5 +1,6 @@
 package com.example.url.yanzhengma;
 
+//验证码的请求类结果
 public class CodeApi {
 
     /**

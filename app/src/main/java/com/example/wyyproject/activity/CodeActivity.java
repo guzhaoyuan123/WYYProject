@@ -3,7 +3,6 @@ package com.example.wyyproject.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,33 +51,35 @@ public class CodeActivity extends AppCompatActivity {
         initData();
     }
 
+//    得到填入的验证码，并判断是否正确
     private void sucess() {
         String phonename;
         Intent intent = getIntent();
         phonename = intent.getStringExtra("phonename");
+//        得到填入的验证码code
         String code = etCodeMi1.getText().toString()
                 + etCodeMi2.getText().toString()
                 + etCodeMi3.getText().toString()
                 + etCodeMi4.getText().toString();
-        Log.e(">>>>>>>>>>>>","???"+code);
+//        判断是否正确
         test(code,phonename);
     }
 
-    //    /captcha/verify?phone=13xxx&captcha=1597
-    //    /captcha/sent?phone=18851767683
     private void initData() {
         String phonename;
         Intent intent = getIntent();
-        phonename = intent.getStringExtra("phonename");
-        Log.e(">>>>>>>>>>>>","???"+phonename);
+        phonename = intent.getStringExtra("phonename");//得到传来的手机号码
 
         sss(phonename);
+        //将手机号码的前三位和后四位保留
         txCodePhone.setText(phonename.substring(0, 3) + "****" + phonename.substring(7, phonename.length()));
+
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
+                    // 发送验证码请求
                     Http.get2("http://10.0.2.2:3000/captcha/sent?phone="+phonename+"");
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -86,11 +87,10 @@ public class CodeActivity extends AppCompatActivity {
 
             }
         }).start();
-
-
     }
 
 
+//    计时器，60秒后可点击重新发送验证码
     private void sss(String phonename) {
         if (phonename != " ") {
             new CountDownTimer(60000, 1000) {
@@ -124,9 +124,9 @@ public class CodeActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
+//                    填入手机号和验证码，判断验证码是否正确
                     String json = Http.get("http://10.0.2.2:3000/captcha/verify?phone="+phonename+"&captcha=" + phonecode + "");
                     CodeApi codeApi = JSON.parseObject(json, CodeApi.class);
-                    Log.e(">>>>>>>>>>>>","???"+codeApi.getCode()+"?????"+phonecode);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -135,18 +135,19 @@ public class CodeActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
                                         try {
+//                                            判断这个手机号码有没有注册过，如果注册过直接进入主界面，如果没有，则进入注册界面
                                           String  json2 = Http.get("http://10.0.2.2:3000/cellphone/existence/check?phone="+phonename+"");
                                             Singin singin = JSON.parseObject(json2,Singin.class);
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    if (singin.getExist()==1){
+                                                    if (singin.getExist()==1){//1代表注册过
                                                         Intent intent = new Intent(CodeActivity.this, NavigationActivity.class);
                                                         startActivity(intent);
                                                     }
                                                     else {
                                                         Intent intent = new Intent(CodeActivity.this, SignInActivity.class);
-                                                        intent.putExtra("shoujihaoma",phonename);
+                                                        intent.putExtra("shoujihaoma",phonename);//将手机号码和验证码传到SignInActivity中
                                                         intent.putExtra("yanzhengma",phonecode);
                                                         startActivity(intent);
                                                     }

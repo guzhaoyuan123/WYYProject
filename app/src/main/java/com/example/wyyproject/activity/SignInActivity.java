@@ -30,7 +30,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
         ButterKnife.bind(this);
         Intent intent = getIntent();
-        shoujihaoma=intent.getStringExtra("shoujihaoma");
+        shoujihaoma=intent.getStringExtra("shoujihaoma");//得到CodeActivity中传来的值
         yanzhengma=intent.getStringExtra("yanzhengma");
     }
 
@@ -42,7 +42,7 @@ public class SignInActivity extends AppCompatActivity {
                 break;
             case R.id.btn_signin_next:
                 Intent intent = new Intent(SignInActivity.this,BeNamedActivity.class);
-                intent.putExtra("getMima",etSigninMima.getText().toString());
+                intent.putExtra("getMima",etSigninMima.getText().toString());//再将手机号码，验证码，密码全部传到BeNamedActivity中
                 intent.putExtra("getShoujihaoma",shoujihaoma);
                 intent.putExtra("getYanzhengma",yanzhengma);
                 startActivity(intent);

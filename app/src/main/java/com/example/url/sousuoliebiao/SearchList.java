@@ -1,5 +1,7 @@
 package com.example.url.sousuoliebiao;
 
+
+//搜索的列表的请求类结果
 public class SearchList {
 
     /**

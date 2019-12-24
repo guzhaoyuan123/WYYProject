@@ -2,8 +2,8 @@ package com.example.url.paihangbang;
 
 import java.util.List;
 
+//排行榜的请求类结果
 public class PaiHangBangApi {
-
 
     /**
      * code : 200

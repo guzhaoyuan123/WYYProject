@@ -2,6 +2,7 @@ package com.example.url.music;
 
 import java.util.List;
 
+//音乐的请求类结果
 public class Music {
 
     /**

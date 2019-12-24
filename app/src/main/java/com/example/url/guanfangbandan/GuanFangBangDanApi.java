@@ -2,8 +2,9 @@ package com.example.url.guanfangbandan;
 
 import java.util.List;
 
-public class GuanFangBangDanApi {
 
+//排行榜中的官方榜单的请求类结果
+public class GuanFangBangDanApi {
 
     /**
      * code : 200

@@ -16,9 +16,9 @@ import com.example.url.meirituijian.EveryDaygeApi;
 import com.example.url.meirituijian.PlaylistBean;
 import com.example.url.meirituijian.TracksBean;
 import com.example.wyyproject.R;
-import com.example.wyyproject.changpian.MusicActivity;
-import com.example.wyyproject.activity.TroubleShootingActivity;
+import com.example.wyyproject.activity.BannerXiangQingActivity;
 import com.example.wyyproject.adapter.EveryDayTuiJianAdapter;
+import com.example.wyyproject.changpian.MusicActivity;
 import com.example.wyyproject.util.AppBarStateChangeListener;
 import com.example.wyyproject.util.Common;
 import com.example.wyyproject.util.Http;
@@ -31,8 +31,8 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+//每日推荐
 public class RecommendedDailyActivity extends AppCompatActivity {
-
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private ListView listView;
@@ -85,11 +85,12 @@ public class RecommendedDailyActivity extends AppCompatActivity {
             }
         }).start();
     }
-
+//展示新歌
     private void showXin( List<TracksBean> beans) {
         EveryDayTuiJianAdapter adapter = new EveryDayTuiJianAdapter(this, beans);
         listView.setAdapter(adapter);
         fixListViewHeight(listView);
+        //将得到的音乐列表保存
         Common.musicList=beans;
         Log.e("<<<<<<<<<<<<<<<<<",""+Common.musicList.size());
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -103,6 +104,7 @@ public class RecommendedDailyActivity extends AppCompatActivity {
     }
 
 
+    //解决冲突
     public void fixListViewHeight(ListView listView) {
         // 如果没有设置数据适配器，则ListView没有子项，返回。
         ListAdapter listAdapter = listView.getAdapter();
@@ -139,8 +141,11 @@ public class RecommendedDailyActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.wenti:
-                Intent intent = new Intent(RecommendedDailyActivity.this, TroubleShootingActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(RecommendedDailyActivity.this, BannerXiangQingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("news", "https://www.baidu.com/");
+                intent.putExtras(bundle);
+                RecommendedDailyActivity.this.startActivity(intent);
                 break;
         }
         return true;

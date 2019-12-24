@@ -1,10 +1,8 @@
 package com.example.url.tuijiangedan;
 
 import java.util.List;
-
+//歌单中歌单广场的推荐歌单的请求类结果
 public class RecommendThePlayList {
-
-
     /**
      * hasTaste : false
      * code : 200

@@ -2,6 +2,8 @@ package com.example.url.banner;
 
 import java.util.List;
 
+
+//轮播图请求结果类
 public class BannersApi {
 
     /**

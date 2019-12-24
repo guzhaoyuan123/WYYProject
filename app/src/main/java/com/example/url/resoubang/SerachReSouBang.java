@@ -2,8 +2,9 @@ package com.example.url.resoubang;
 
 import java.util.List;
 
-public class SerachReSouBang {
 
+//搜索的热搜榜的请求类结果
+public class SerachReSouBang {
 
     /**
      * code : 200

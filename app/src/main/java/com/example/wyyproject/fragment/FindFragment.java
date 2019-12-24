@@ -23,6 +23,7 @@ import com.example.url.tuijiangedan.ResultBean;
 import com.example.url.xindie.AlbumsBean;
 import com.example.url.xindie.TheNewDisc;
 import com.example.wyyproject.R;
+import com.example.wyyproject.activity.BannerXiangQingActivity;
 import com.example.wyyproject.list.FindTuijianMusicActivity;
 import com.example.wyyproject.list.RecommendedDailyActivity;
 import com.example.wyyproject.activity.SongListActivity;
@@ -50,20 +51,16 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private RecyclerView find_recyclerView_tuijianedan;
     private RecyclerView find_recyclerView_xindie, find_recyclerView_yuncunjingxuan;
     private LinearLayout lydots;
-
     private static String[] urls, titles;
     private AdViewpagerUtil adViewpagerUtil;
     private TextView bannerText, textView1, textView2;
-
     private Button btn_find_xin;
     private SwipeRefreshLayout refreshLayout;
-
     private ImageView imageViewMeiri;
     private ImageView imageViewGedan;
     private ImageView imageViewPaihangbang;
     private ImageView imageViewDiantai;
     private ImageView imageViewZhibo;
-
     private TextView txMeiri;
     private TextView txGedan;
     private TextView txPaihangbang;
@@ -71,27 +68,21 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     private TextView txZhibo;
 
     public FindFragment() {
-
     }
-
 
     public static FindFragment newInstance() {
         FindFragment fragment = new FindFragment();
-
         return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.fragment_find, container, false);
 //       实例化控件
         bannerText = view.findViewById(R.id.banner_text);
@@ -102,18 +93,19 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         textView2 = view.findViewById(R.id.tx_find_xinge);
         btn_find_xin = view.findViewById(R.id.btn_find_xin);
         find_recyclerView_yuncunjingxuan = view.findViewById(R.id.find_recyclerView_yuncunjingxuan);
+        imageViewMeiri = view.findViewById(R.id.img_find_meirituijian);
+        imageViewGedan = view.findViewById(R.id.img_find_gedan);
+        imageViewPaihangbang = view.findViewById(R.id.img_find_paihangbang);
+        imageViewDiantai = view.findViewById(R.id.img_find_diantai);
+        imageViewZhibo = view.findViewById(R.id.img_find_zhibo);
+        txMeiri = view.findViewById(R.id.tx_find_meirituijian);
+        txGedan = view.findViewById(R.id.tx_find_gedan);
+        txPaihangbang = view.findViewById(R.id.tx_find_paihangbang);
+        txDiantai = view.findViewById(R.id.tx_find_diantai);
+        txZhibo = view.findViewById(R.id.tx_find_zhibo);
+        find_recyclerView_xindie = view.findViewById(R.id.find_recyclerView_xindie);
+        find_recyclerView_tuijianedan = view.findViewById(R.id.find_recyclerView_tuijianedan);
 
-        imageViewMeiri=view.findViewById(R.id.img_find_meirituijian);
-        imageViewGedan=view.findViewById(R.id.img_find_gedan);
-        imageViewPaihangbang=view.findViewById(R.id.img_find_paihangbang);
-        imageViewDiantai=view.findViewById(R.id.img_find_diantai);
-        imageViewZhibo=view.findViewById(R.id.img_find_zhibo);
-
-        txMeiri=view.findViewById(R.id.tx_find_meirituijian);
-        txGedan=view.findViewById(R.id.tx_find_gedan);
-        txPaihangbang=view.findViewById(R.id.tx_find_paihangbang);
-        txDiantai=view.findViewById(R.id.tx_find_diantai);
-        txZhibo=view.findViewById(R.id.tx_find_zhibo);
 
 //        下拉刷新
         refreshLayout.setOnRefreshListener(this);
@@ -123,25 +115,20 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 android.R.color.holo_red_light,
                 android.R.color.holo_red_light);
 
-        find_recyclerView_xindie = view.findViewById(R.id.find_recyclerView_xindie);
-        find_recyclerView_tuijianedan = view.findViewById(R.id.find_recyclerView_tuijianedan);
-        stagger4();
-        stagger2();
-        stagger();
 
+        yuncun();//加载云村经典
+        xindie();//加载新碟
+        tuijian();//加载推荐歌单
+        jiazai();//填充banner轮播图
 
-        initView();
-        jiazai();
-
+        //按钮点击事件
         textView1.setOnClickListener(this);
         textView2.setOnClickListener(this);
-
         imageViewMeiri.setOnClickListener(this);
         imageViewGedan.setOnClickListener(this);
         imageViewPaihangbang.setOnClickListener(this);
         imageViewDiantai.setOnClickListener(this);
         imageViewZhibo.setOnClickListener(this);
-
         txMeiri.setOnClickListener(this);
         txGedan.setOnClickListener(this);
         txPaihangbang.setOnClickListener(this);
@@ -150,14 +137,8 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         return view;
     }
 
-    private void initView() {
-
-
-    }
-
-    ///
 //加载推荐歌单
-    private void stagger() {
+    private void tuijian() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -183,7 +164,6 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 3, GridLayoutManager.VERTICAL, false);
         find_recyclerView_tuijianedan.setLayoutManager(layoutManager);
         // recyclerView.setLayoutManager(new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false));
-
         FindTJGDRecyclerviewAdapter adapter = new FindTJGDRecyclerviewAdapter(getContext(), result);
         find_recyclerView_tuijianedan.setAdapter(adapter);
         adapter.notifyDataSetChanged();
@@ -191,17 +171,16 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             @Override
             public void onClick(int position) {
                 Intent intent = new Intent(getContext(), FindTuijianMusicActivity.class);
-                Log.e(">>>>>>",""+result.get(position).getId());
-                intent.putExtra("paihangbangId2",result.get(position).getId());
-                intent.putExtra("paihangbangName2",result.get(position).getName());
+                Log.e(">>>>>>", "" + result.get(position).getId());
+                intent.putExtra("paihangbangId2", result.get(position).getId());
+                intent.putExtra("paihangbangName2", result.get(position).getName());
                 startActivity(intent);
             }
         });
     }
 
-    ///
 //加载新碟
-    private void stagger2() {
+    private void xindie() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -243,7 +222,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     //加载新歌
-    private void stagger3() {
+    private void xinge() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -285,7 +264,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     //加载云村经典
-    private void stagger4() {
+    private void yuncun() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -318,8 +297,6 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         adapter.setOnItemClickListener(new FindYCJXRecyclerviewAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
-
-//
                 Intent intent = new Intent(getContext(), VillageOfSelectedActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt("id", datasBeans.get(position).getId());
@@ -330,7 +307,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         });
     }
 
-
+//加载轮播图
     private void jiazai() {
         new Thread(new Runnable() {
             @Override
@@ -355,6 +332,8 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     }
 
     private void showRequest(BannersApi bannersApi) {
+
+        //手动写banner
         titles = new String[9];
         titles[0] = bannersApi.getBanners().get(0).getTypeTitle();
         titles[1] = bannersApi.getBanners().get(1).getTypeTitle();
@@ -381,15 +360,19 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
         if (bannersApi.getBanners().get(0).getTitleColor().equals("red")) {
             bannerText.setBackgroundResource(R.drawable.yuanjiao);
         }
-
         bannerText.setText(titles[0]);
-
-
         adViewpagerUtil.setOnAdItemClickListener(new AdViewpagerUtil.OnAdItemClickListener() {
             @Override
             public void onItemClick(View v, int flag) {
-
-                Toast.makeText(getContext(), "flag:" + flag, Toast.LENGTH_SHORT).show();
+                if (bannersApi.getBanners().get(flag).getUrl()!=null){
+                    Intent intent = new Intent(getContext(), BannerXiangQingActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("news", (String) bannersApi.getBanners().get(flag).getUrl());
+                    intent.putExtras(bundle);
+                    getContext().startActivity(intent);
+                }else {
+                    Toast.makeText(getContext(),"这个没有url别点了",Toast.LENGTH_LONG);
+                }
             }
         });
         adViewpagerUtil.setOnAdPageChangeListener(new AdViewpagerUtil.OnAdPageChangeListener() {
@@ -401,12 +384,10 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             @Override
             public void onPageScrolled(int arg0, float arg1, int arg2) {
 
-
             }
 
             @Override
             public void onPageSelected(int arg0) {
-
                 if (arg0 == 0)
                     arg0 = 1;
                 if (arg0 == urls.length + 1) {
@@ -424,12 +405,13 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     }
 
+    //下拉刷新事件
     @Override
     public void onRefresh() {
-        stagger();
-        stagger2();
-        stagger3();
-        stagger4();
+        tuijian();//加载推荐
+        xindie();//加载新碟
+        xinge();//加载新歌
+        yuncun();//加载云村视频
         refreshLayout.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -442,7 +424,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     @Override
     public void onClick(View view) {
         Intent intent;
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.img_find_meirituijian:
                 intent = new Intent(getContext(), RecommendedDailyActivity.class);
                 startActivity(intent);
@@ -476,7 +458,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
             case R.id.tx_find_zhibo:
                 break;
             case R.id.tx_find_xindie:
-                stagger2();
+                xindie();
                 float selectedSize = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics());
                 textView1.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSize);
                 textView1.setTextColor(getResources().getColor(R.color.selectCheck2));
@@ -488,7 +470,7 @@ public class FindFragment extends Fragment implements SwipeRefreshLayout.OnRefre
                 btn_find_xin.setText("更多新碟");
                 break;
             case R.id.tx_find_xinge:
-                stagger3();
+                xinge();
                 float selectedSize3 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 20, getResources().getDisplayMetrics());
                 textView2.setTextSize(TypedValue.COMPLEX_UNIT_SP, selectedSize3);
                 textView2.setTextColor(getResources().getColor(R.color.selectCheck2));

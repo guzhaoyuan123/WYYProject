@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
@@ -66,13 +65,10 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music);
-
         Intent intent = getIntent();
-        position=intent.getIntExtra("postion",0);
+        position=intent.getIntExtra("postion",0);//得到传来的Id
 
-
-
-        Link();
+        link();
         initView(position);
 //
 //        Glide.with(this).load(picture).into(discsmap);
@@ -99,13 +95,13 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
+    //请求歌曲接口
     private void initView(int position) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     String json = Http.get("http://10.0.2.2:3000/song/url?id=" + Common.musicList.get(position).getId() + "");
-                    Log.e("????????????", "" + json);
                     Music music = JSON.parseObject(json, Music.class);
                     List<DataBean> datasBeans = music.getData();
                     runOnUiThread(new Runnable() {
@@ -126,7 +122,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         }).start();
     }
 
-
+    //播放要做的事情
     private void play(String path, long length,int position) {
         imgMusicGeMinga.setText(Common.musicList.get(position).getName());
         imgMusicZuoZhe.setText(Common.musicList.get(position).getAr().get(0).getName());
@@ -146,6 +142,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
 
+        //唱片转动
         animator = ObjectAnimator.ofFloat(discsmap, "rotation", 0f, 360.0f);
         animator.setDuration(10000);
         animator.setInterpolator(new LinearInterpolator());
@@ -176,7 +173,8 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         return TotalTime;
     }
 
-    private void Link() {
+    //实例化控件
+    private void link() {
         imgMusicFanhui=findViewById(R.id.img_music_fanhui);
         imgMusicFenXiang=findViewById(R.id.img_music_fenxiang);
         imgMusicGeMinga=findViewById(R.id.tx_music_geming);
@@ -227,6 +225,7 @@ public class MusicActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    //退出就将音乐关掉
     @Override
     protected void onDestroy() {
         super.onDestroy();

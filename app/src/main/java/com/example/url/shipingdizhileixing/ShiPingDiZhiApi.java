@@ -1,7 +1,7 @@
 package com.example.url.shipingdizhileixing;
 
 import java.util.List;
-
+//mv的请求类结果
 public class ShiPingDiZhiApi {
 
     /**

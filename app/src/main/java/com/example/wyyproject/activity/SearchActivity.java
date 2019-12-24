@@ -92,7 +92,7 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
-    //加载热搜榜
+    //默认搜索的关键字
     private void initView2() {
         new Thread(new Runnable() {
             @Override
@@ -114,7 +114,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
 
-    ///search/hot
+    //
     @OnClick({R.id.img_search_fanhui, R.id.img_search_searchimg, R.id.search_nest})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -129,8 +129,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-    //    /search/suggest?keywords= 海阔天空
-//    /search/suggest?keywords= 海阔天空&type=mobile
+    //搜索歌名
     private void searchMusicName() {
         new Thread(new Runnable() {
             @Override
@@ -152,6 +151,7 @@ public class SearchActivity extends AppCompatActivity {
         }).start();
     }
 
+    //展示搜索接口，并在对话框中显示
     public void shouList(SearchList api) {
         if (api.getResult()==null){
         }else {
@@ -162,14 +162,14 @@ public class SearchActivity extends AppCompatActivity {
                     .setSingleChoiceItems(adapter, 0, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
+                            Toast.makeText(SearchActivity.this,"好的好的马上跳转",Toast.LENGTH_LONG).show();
                         }
                     }).create();
             alertDialog.show();
         }
     }
 
-
+    //解决NestedScrollView和ListView的冲突
     public void fixListViewHeight(ListView listView) {
         // 如果没有设置数据适配器，则ListView没有子项，返回。
         ListAdapter listAdapter = listView.getAdapter();
@@ -184,7 +184,6 @@ public class SearchActivity extends AppCompatActivity {
             // 计算所有子项的高度和
             totalHeight += listViewItem.getMeasuredHeight();
         }
-
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         // listView.getDividerHeight()获取子项间分隔符的高度
         // params.height设置ListView完全显示需要的高度

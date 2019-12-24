@@ -49,7 +49,6 @@ public class FindTuijianActivity extends AppCompatActivity implements View.OnCli
     private int position;
     private SeekBar jindutiaoSb;
     private boolean isStop;
-    //接受多线程信息，安卓中不允许主线程实现UI更新
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {

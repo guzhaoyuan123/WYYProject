@@ -1,5 +1,6 @@
 package com.example.url.yuncunjingxuanshiping;
 
+//云村的请求类结果
 public class YunCunJingXuanSHiPing {
 
     /**

@@ -1,5 +1,6 @@
 package com.example.url.shoujihaozhuce;
 
+//判断手机号码是否注册过的请求类结果
 public class Singin {
 
     /**
