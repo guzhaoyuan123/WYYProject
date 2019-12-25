@@ -15,34 +15,55 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.BannerXiangQingActivity"></activity>
-        <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".list.ChineseGedanActivity" />
-        <activity android:name=".list.FindTuijianMusicActivity" />
-        <activity android:name=".list.MusicTopActivity" />
-        <activity android:name=".activity.TopListActivity" />
-        <activity android:name=".activity.SongListActivity" />
-        <activity android:name=".changpian.MusicActivity" />
-        <activity android:name=".changpian.FindTuijianActivity" />
-        <activity android:name=".changpian.PaiHangBangMusicActivity" />
-        <activity android:name=".activity.TroubleShootingActivity" />
-        <activity android:name=".changpian.ChineseActivity" />
-        <activity android:name=".list.RecommendedDailyActivity" />
-        <activity android:name=".activity.NavigationActivity" />
-        <activity android:name=".activity.BeNamedActivity" />
-        <activity android:name=".activity.SignInActivity" />
-        <activity android:name=".activity.CodeActivity" />
-        <activity
-            android:name=".activity.PhoneLoginActivity"
-            android:launchMode="singleInstance" />
-        <activity
-            android:name=".activity.LoginActivity"
+        <activity android:name=".activity.SplashActivity"
             android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.BannerXiangQingActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.SearchActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".list.ChineseGedanActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".list.FindTuijianMusicActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".list.MusicTopActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.TopListActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.SongListActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".changpian.MusicActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".changpian.FindTuijianActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".changpian.PaiHangBangMusicActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.TroubleShootingActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".changpian.ChineseActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".list.RecommendedDailyActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.NavigationActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.BeNamedActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.SignInActivity"
+            android:launchMode="singleInstance"/>
+        <activity android:name=".activity.CodeActivity"
+            android:launchMode="singleInstance"/>
+        <activity
+            android:name=".activity.PhoneLoginActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:launchMode="singleInstance">
+
         </activity>
         <activity
             android:name=".activity.VillageOfSelectedActivity"
